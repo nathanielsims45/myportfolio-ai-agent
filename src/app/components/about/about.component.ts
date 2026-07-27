@@ -48,7 +48,7 @@ import { TiltDirective } from '../shared/tilt.directive';
               @for (stat of stats; track stat.label) {
                 <div appTilt class="glass glass-hover rounded-2xl p-4 text-center">
                   <div class="text-3xl font-bold gradient-text">
-                    {{ counts()[stat.label] ?? 0 }}{{ stat.suffix }}
+                    {{ counts()[stat.label] }}{{ stat.suffix }}
                   </div>
                   <div class="mt-1 text-xs text-text-muted">{{ stat.label }}</div>
                 </div>
