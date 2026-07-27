@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
 import { ARCHITECTURE_FLOW, CLOUD_FLOW, AI_SOLUTIONS, CODE_QUALITY, CERTIFICATIONS, EDUCATION } from '../../data/portfolio.data';
 import { SectionHeaderComponent } from '../shared/section-header.component';
+import { TiltDirective } from '../shared/tilt.directive';
 
 @Component({
   selector: 'app-architecture',
-  imports: [SectionHeaderComponent],
+  imports: [SectionHeaderComponent, TiltDirective],
   template: `
     <section id="architecture" class="section-pad relative">
       <div class="container-x space-y-20">
@@ -61,10 +62,17 @@ import { SectionHeaderComponent } from '../shared/section-header.component';
             subtitle="Production AI patterns I ship on Azure." />
           <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
             @for (ai of aiSolutions; track ai.title) {
-              <div class="reveal glass glass-hover rounded-2xl p-5">
-                <div class="text-accent text-lg">✦</div>
-                <h3 class="mt-2 font-semibold text-text">{{ ai.title }}</h3>
-                <p class="mt-1 text-sm text-text-muted leading-relaxed">{{ ai.desc }}</p>
+              <div appTilt class="reveal glass glass-hover rounded-2xl overflow-hidden group">
+                <div class="relative h-32 overflow-hidden">
+                  <img [src]="ai.image" [alt]="ai.title" loading="lazy"
+                    class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
+                  <div class="absolute inset-0" style="background:linear-gradient(180deg, transparent 30%, rgba(5,6,15,0.9) 100%)"></div>
+                  <div class="absolute top-3 left-3 text-accent text-lg">✦</div>
+                </div>
+                <div class="p-5">
+                  <h3 class="font-semibold text-text">{{ ai.title }}</h3>
+                  <p class="mt-1 text-sm text-text-muted leading-relaxed">{{ ai.desc }}</p>
+                </div>
               </div>
             }
           </div>

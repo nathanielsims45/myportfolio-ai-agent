@@ -5,8 +5,19 @@ import * as THREE from 'three';
 
 @Component({
   selector: 'app-cinematic-bg',
-  template: `<canvas #c class="block w-full h-full"></canvas>`,
-  styles: [`:host{display:block;width:100%;height:100%}`],
+  template: `
+    <canvas #c class="block w-full h-full"></canvas>
+    <div class="tech-words" aria-hidden="true">
+      @for (w of techWords; track w.text) {
+        <span class="tech-word" [style]="w.style">{{ w.text }}</span>
+      }
+    </div>
+  `,
+  styles: [`
+    :host{display:block;width:100%;height:100%}
+    .tech-words{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+    .tech-word{position:absolute;top:0;left:0;font-family:var(--font-mono);font-size:0.8rem;color:rgba(155,134,255,0.35);white-space:nowrap;will-change:transform,opacity;text-shadow:0 0 12px rgba(124,92,255,0.4)}
+  `],
 })
 export class CinematicBgComponent implements AfterViewInit, OnDestroy {
   @ViewChild('c', { read: ElementRef }) canvasRef!: ElementRef<HTMLCanvasElement>;
@@ -23,6 +34,10 @@ export class CinematicBgComponent implements AfterViewInit, OnDestroy {
   private stars!: THREE.Points;
   private clock = new THREE.Clock();
   private reduced = false;
+  readonly techWords: { text: string; style: string }[] = [];
+  private wordEls: HTMLElement[] = [];
+  private wordData: { x: number; y: number; vx: number; vy: number; rot: number; vr: number; phase: number }[] = [];
+  private wordHost?: HTMLElement;
 
   constructor(private zone: NgZone) {}
 
@@ -54,6 +69,7 @@ export class CinematicBgComponent implements AfterViewInit, OnDestroy {
     this.buildConstellation();
     this.buildOrbs();
     this.buildStars();
+    this.buildTechWords();
 
     window.addEventListener('resize', this.onResize);
     window.addEventListener('mousemove', this.onMouseMove);
@@ -172,6 +188,37 @@ export class CinematicBgComponent implements AfterViewInit, OnDestroy {
     this.scene.add(this.stars);
   }
 
+  private buildTechWords() {
+    const words = ['Angular','TypeScript','RxJS','Signals','Standalone','SSR','TailwindCSS','SCSS','C#','.NET','ASP.NET','Azure','Azure OpenAI','Power BI','Docker','Kubernetes','Terraform','GitHub Actions','Node.js','GraphQL','PostgreSQL','SQL Server','Python','REST','Microservices','OpenAI','AI Agents','LangChain','Supabase','Redis','NGRX','WebSockets'];
+    const n = this.reduced ? 10 : 24;
+    const w = window.innerWidth, h = window.innerHeight;
+    for (let i = 0; i < n; i++) {
+      const text = words[Math.floor(Math.random() * words.length)];
+      const x = Math.random() * w;
+      const y = Math.random() * h;
+      this.techWords.push({ text, style: `opacity:0` });
+      this.wordData.push({ x, y, vx: (Math.random() - 0.5) * 0.3, vy: (Math.random() - 0.5) * 0.3, rot: (Math.random() - 0.5) * 20, vr: (Math.random() - 0.5) * 0.1, phase: Math.random() * Math.PI * 2 });
+    }
+    queueMicrotask(() => {
+      this.wordHost = this.canvasRef.nativeElement.parentElement?.querySelector('.tech-words') as HTMLElement;
+      this.wordEls = Array.from(this.wordHost?.querySelectorAll('.tech-word') ?? []);
+    });
+  }
+
+  private updateTechWords(t: number) {
+    if (!this.wordEls.length) return;
+    const w = window.innerWidth, h = window.innerHeight;
+    for (let i = 0; i < this.wordEls.length; i++) {
+      const d = this.wordData[i];
+      d.x += d.vx; d.y += d.vy; d.rot += d.vr;
+      if (d.x < -120) d.x = w + 120; if (d.x > w + 120) d.x = -120;
+      if (d.y < -40) d.y = h + 40; if (d.y > h + 40) d.y = -40;
+      const op = 0.18 + Math.sin(t * 0.4 + d.phase) * 0.18;
+      this.wordEls[i].style.transform = `translate(${d.x}px, ${d.y}px) rotate(${d.rot}deg)`;
+      this.wordEls[i].style.opacity = String(Math.max(0, op));
+    }
+  }
+
   private updateLines() {
     const pos = (this.points.geometry.getAttribute('position') as THREE.BufferAttribute).array as Float32Array;
     const linePos = (this.lines.geometry.getAttribute('position') as THREE.BufferAttribute).array as Float32Array;
@@ -244,6 +291,7 @@ export class CinematicBgComponent implements AfterViewInit, OnDestroy {
     });
 
     this.updateStars();
+    this.updateTechWords(t);
 
     this.renderer.render(this.scene, this.camera);
   };

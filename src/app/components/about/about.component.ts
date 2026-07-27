@@ -4,10 +4,11 @@ import {
 import { ScrollRevealService } from '../../services/scroll-reveal.service';
 import { STATS, PROFILE } from '../../data/portfolio.data';
 import { SectionHeaderComponent } from '../shared/section-header.component';
+import { TiltDirective } from '../shared/tilt.directive';
 
 @Component({
   selector: 'app-about',
-  imports: [SectionHeaderComponent],
+  imports: [SectionHeaderComponent, TiltDirective],
   template: `
     <section id="about" class="section-pad relative">
       <div class="container-x">
@@ -16,12 +17,15 @@ import { SectionHeaderComponent } from '../shared/section-header.component';
 
         <div class="grid lg:grid-cols-2 gap-10 items-center">
           <div class="reveal relative">
-            <div class="glass gradient-border rounded-3xl overflow-hidden aspect-[4/5] max-w-md mx-auto relative">
-              <div class="absolute inset-0 grid place-items-center text-text-muted text-sm font-mono">
-                photo placeholder
-              </div>
+            <div appTilt class="glass gradient-border rounded-3xl overflow-hidden aspect-[4/5] max-w-md mx-auto relative">
+              <img [src]="profile.image" [alt]="profile.name" loading="lazy"
+                class="w-full h-full object-cover" />
               <div class="absolute inset-0"
-                style="background:radial-gradient(circle at 30% 20%, rgba(124,92,255,0.35), transparent 60%), radial-gradient(circle at 80% 80%, rgba(56,189,248,0.3), transparent 60%)"></div>
+                style="background:linear-gradient(180deg, transparent 40%, rgba(5,6,15,0.85) 100%), radial-gradient(circle at var(--glow-x,50%) var(--glow-y,50%), rgba(124,92,255,0.35), transparent 55%)"></div>
+              <div class="absolute bottom-4 left-4 right-4">
+                <div class="text-xs eyebrow">{{ profile.title }}</div>
+                <div class="mt-1 font-semibold text-text">{{ profile.name }}</div>
+              </div>
             </div>
           </div>
 
@@ -42,7 +46,7 @@ import { SectionHeaderComponent } from '../shared/section-header.component';
 
             <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-4">
               @for (stat of stats; track stat.label) {
-                <div class="glass glass-hover rounded-2xl p-4 text-center">
+                <div appTilt class="glass glass-hover rounded-2xl p-4 text-center">
                   <div class="text-3xl font-bold gradient-text">
                     {{ counts()[stat.label] ?? 0 }}{{ stat.suffix }}
                   </div>
