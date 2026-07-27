@@ -1,0 +1,68 @@
+:host { display: block; }
+
+.btn-primary {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  padding: 0.7rem 1.4rem; border-radius: 999px;
+  font-weight: 600; color: #fff;
+  background: linear-gradient(135deg, #7c5cff, #38bdf8);
+  box-shadow: var(--shadow-glow);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 0 60px -10px rgba(124,92,255,0.7); }
+
+.btn-ghost {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  padding: 0.7rem 1.4rem; border-radius: 999px;
+  font-weight: 600; color: var(--color-text);
+  border: 1px solid var(--color-border);
+  background: rgba(255,255,255,0.02);
+  transition: border-color 0.3s, background 0.3s;
+}
+.btn-ghost:hover { border-color: rgba(124,92,255,0.5); background: rgba(124,92,255,0.08); }
+
+.orbit-host { position: relative; }
+
+.orbit-ring {
+  position: absolute; left: 50%; top: 50%;
+  border-radius: 50%; border: 1px dashed rgba(124,92,255,0.25);
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+.ring-0 { width: 360px; height: 200px; border-color: rgba(124,92,255,0.35); }
+.ring-1 { width: 520px; height: 290px; border-color: rgba(56,189,248,0.3); }
+.ring-2 { width: 680px; height: 380px; border-color: rgba(255,255,255,0.18); }
+
+.orbit-center {
+  position: absolute; left: 50%; top: 50%;
+  transform: translate(-50%, -50%);
+  padding: 1rem 1.4rem; text-align: center;
+  z-index: 20;
+  box-shadow: var(--shadow-glow);
+}
+
+.orbit-card {
+  position: absolute; left: 0; top: 0;
+  padding: 0.5rem 0.9rem; border-radius: 0.7rem;
+  font-size: 0.8rem; font-weight: 600;
+  display: flex; align-items: center; gap: 0.4rem;
+  white-space: nowrap;
+  will-change: transform;
+  transition: box-shadow 0.3s, border-color 0.3s;
+}
+.orbit-card.is-hover {
+  border-color: rgba(124,92,255,0.7);
+  box-shadow: 0 0 30px -5px rgba(124,92,255,0.6);
+}
+
+.orbit-dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  box-shadow: 0 0 8px currentColor;
+}
+
+.orbit-line {
+  position: absolute; left: 0; top: 0; height: 1.5px;
+  transform-origin: left center;
+  background: linear-gradient(90deg, rgba(124,92,255,0.9), rgba(56,189,248,0.2));
+  opacity: 0; transition: opacity 0.3s;
+  pointer-events: none;
+}
