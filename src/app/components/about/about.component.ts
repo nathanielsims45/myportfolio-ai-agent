@@ -12,8 +12,8 @@ import { TiltDirective } from '../shared/tilt.directive';
   template: `
     <section id="about" class="section-pad relative">
       <div class="container-x">
-        <app-section-header eyebrow="About" title="Enterprise architect, AI pragmatist"
-          subtitle="Two decades shipping production Angular + Azure systems for regulated industries." />
+        <app-section-header eyebrow="About" title="Angular developer who sweats the interface"
+          subtitle="Frontend specialist for crypto, casino, and data-heavy products." />
 
         <div class="grid lg:grid-cols-2 gap-10 items-center">
           <div class="reveal relative">
@@ -32,17 +32,16 @@ import { TiltDirective } from '../shared/tilt.directive';
 
           <div class="reveal space-y-5">
             <p class="text-lg text-text-muted leading-relaxed">
-              I'm {{ profile.name }}, a senior Angular architect specializing in
-              enterprise platforms for healthcare, FinTech, and government. I pair
-              pixel-perfect Angular frontends with Azure cloud architecture and
-              AI-augmented services — building systems that are fast, accessible,
-              and built to scale across dozens of product teams.
+              I'm {{ profile.name }}, an Angular frontend developer focused on
+              crypto, casino, and other data-heavy interfaces. I build the layer
+              users actually touch — component libraries, live trading and wallet
+              views, and responsive layouts that stay fast and accessible.
             </p>
             <p class="text-text-muted leading-relaxed">
-              My work spans HIPAA-compliant patient portals, real-time financial
-              dashboards, and Azure OpenAI agent platforms. I care deeply about
-              performance budgets, design systems, and shipping software that
-              feels like a premium SaaS product.
+              I'm a developer first, not a designer — but I'm fluent in design.
+              I work comfortably from Figma, care about type, spacing, and motion,
+              and can spot the gaps in a spec before they reach production. That
+              overlap is why designers and I ship faster together.
             </p>
 
             <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-4">

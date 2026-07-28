@@ -4,6 +4,7 @@ import { NavbarComponent } from './app/components/navbar/navbar.component';
 import { CinematicBgComponent } from './app/components/cinematic-bg/cinematic-bg.component';
 import { HeroComponent } from './app/components/hero/hero.component';
 import { TechStackComponent } from './app/components/tech-stack/tech-stack.component';
+import { BrandsComponent } from './app/components/brands/brands.component';
 import { AboutComponent } from './app/components/about/about.component';
 import { SkillsComponent } from './app/components/skills/skills.component';
 import { ExperienceComponent } from './app/components/experience/experience.component';
@@ -17,7 +18,7 @@ import { ScrollRevealService } from './app/services/scroll-reveal.service';
 @Component({
   selector: 'app-root',
   imports: [
-    NavbarComponent, CinematicBgComponent, HeroComponent, TechStackComponent, AboutComponent,
+    NavbarComponent, CinematicBgComponent, HeroComponent, TechStackComponent, BrandsComponent, AboutComponent,
     SkillsComponent, ExperienceComponent, ProjectsComponent,
     ArchitectureComponent, ChartsComponent, ContactComponent, FooterComponent,
   ],
@@ -31,6 +32,7 @@ import { ScrollRevealService } from './app/services/scroll-reveal.service';
         <main>
           <app-hero />
           <app-tech-stack />
+          <app-brands />
           <app-about />
           <app-skills />
           <app-experience />

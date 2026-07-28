@@ -33,7 +33,7 @@
 /* Angular custom elements default to display:inline, which gives them no
    reliable box. That breaks layout and makes IntersectionObserver geometry
    unreliable for the .reveal children inside them. */
-app-root, app-navbar, app-cinematic-bg, app-hero, app-tech-stack, app-about, app-skills,
+app-root, app-navbar, app-cinematic-bg, app-hero, app-tech-stack, app-brands, app-about, app-skills,
 app-experience, app-projects, app-architecture, app-charts, app-contact,
 app-footer, app-section-header, app-circular-progress {
   display: block;

@@ -76,13 +76,14 @@ export class NavbarComponent {
   items: NavItem[] = [
     { label: 'Home', href: '#home' },
     { label: 'Stack', href: '#stack' },
+    { label: 'Brands', href: '#brands' },
     { label: 'About', href: '#about' },
     { label: 'Experience', href: '#experience' },
     { label: 'Skills', href: '#skills' },
     { label: 'Projects', href: '#projects' },
-    { label: 'Architecture', href: '#architecture' },
+    { label: 'Process', href: '#architecture' },
     { label: 'Charts', href: '#charts' },
-    { label: 'AI', href: '#ai' },
+    { label: 'UI/UX', href: '#ai' },
     { label: 'Contact', href: '#contact' },
   ];
 
