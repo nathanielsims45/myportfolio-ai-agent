@@ -13,11 +13,20 @@ import { TiltDirective } from '../shared/tilt.directive';
         <div>
           <app-section-header eyebrow="Architecture" title="Enterprise architecture flow"
             subtitle="Animated end-to-end flow from microservices to AI services." />
-          <div class="reveal glass rounded-3xl p-8">
+          <div class="reveal glass rounded-3xl p-6 sm:p-8">
             <div class="flex flex-col items-center gap-3">
-              @for (node of arch; track node; let last = $last) {
-                <div class="arch-node glass glass-hover rounded-xl px-6 py-3 text-center min-w-[220px]">
-                  <span class="font-semibold text-text">{{ node }}</span>
+              @for (node of arch; track node.label; let last = $last) {
+                <div class="arch-node glass glass-hover rounded-2xl overflow-hidden group relative w-full max-w-md">
+                  <img [src]="node.image" [alt]="node.label" loading="lazy" decoding="async"
+                    class="absolute inset-0 w-full h-full object-cover opacity-20 transition-all duration-700 group-hover:opacity-40 group-hover:scale-110" />
+                  <div class="absolute inset-0" style="background:linear-gradient(100deg, rgba(5,6,15,0.94) 30%, rgba(5,6,15,0.6) 100%)"></div>
+                  <div class="relative flex items-center gap-4 px-5 py-4">
+                    <span class="node-icon grid place-items-center w-11 h-11 rounded-xl shrink-0 text-lg text-white">{{ node.icon }}</span>
+                    <div class="text-left min-w-0">
+                      <div class="font-semibold text-text">{{ node.label }}</div>
+                      <div class="text-xs text-text-muted">{{ node.detail }}</div>
+                    </div>
+                  </div>
                 </div>
                 @if (!last) {
                   <div class="arch-arrow"></div>
@@ -31,11 +40,20 @@ import { TiltDirective } from '../shared/tilt.directive';
         <div>
           <app-section-header eyebrow="Cloud" title="Azure cloud architecture"
             subtitle="Animated data flow across managed Azure services." />
-          <div class="reveal glass rounded-3xl p-8">
+          <div class="reveal glass rounded-3xl p-6 sm:p-8">
             <div class="flex flex-col items-center gap-3">
-              @for (node of cloud; track node; let last = $last) {
-                <div class="arch-node glass glass-hover rounded-xl px-6 py-3 text-center min-w-[220px]">
-                  <span class="font-semibold text-text">{{ node }}</span>
+              @for (node of cloud; track node.label; let last = $last) {
+                <div class="arch-node glass glass-hover rounded-2xl overflow-hidden group relative w-full max-w-md">
+                  <img [src]="node.image" [alt]="node.label" loading="lazy" decoding="async"
+                    class="absolute inset-0 w-full h-full object-cover opacity-20 transition-all duration-700 group-hover:opacity-40 group-hover:scale-110" />
+                  <div class="absolute inset-0" style="background:linear-gradient(100deg, rgba(5,6,15,0.94) 30%, rgba(5,6,15,0.6) 100%)"></div>
+                  <div class="relative flex items-center gap-4 px-5 py-4">
+                    <span class="node-icon grid place-items-center w-11 h-11 rounded-xl shrink-0 text-lg text-white">{{ node.icon }}</span>
+                    <div class="text-left min-w-0">
+                      <div class="font-semibold text-text">{{ node.label }}</div>
+                      <div class="text-xs text-text-muted">{{ node.detail }}</div>
+                    </div>
+                  </div>
                 </div>
                 @if (!last) {
                   <div class="arch-arrow"></div>
@@ -50,8 +68,14 @@ import { TiltDirective } from '../shared/tilt.directive';
           <app-section-header eyebrow="Quality" title="Angular code quality"
             subtitle="Practices I enforce across every codebase I own." />
           <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
-            @for (item of codeQuality; track item) {
-              <div class="reveal glass glass-hover rounded-xl p-4 text-sm font-medium text-text">{{ item }}</div>
+            @for (item of codeQuality; track item.label) {
+              <div appTilt class="reveal quality-card glass glass-hover rounded-xl p-4 flex items-start gap-3">
+                <span class="node-icon grid place-items-center w-9 h-9 rounded-lg shrink-0 text-white">{{ item.icon }}</span>
+                <div class="min-w-0">
+                  <div class="text-sm font-semibold text-text leading-snug">{{ item.label }}</div>
+                  <div class="mt-0.5 text-xs text-text-muted leading-snug">{{ item.detail }}</div>
+                </div>
+              </div>
             }
           </div>
         </div>
@@ -84,12 +108,21 @@ import { TiltDirective } from '../shared/tilt.directive';
             <app-section-header eyebrow="Credentials" title="Certifications" />
             <div class="grid sm:grid-cols-2 gap-3">
               @for (cert of certifications; track cert.name) {
-                <div class="reveal glass glass-hover rounded-xl p-4 flex items-center gap-3">
-                  <span class="grid place-items-center w-9 h-9 rounded-lg"
-                    style="background:linear-gradient(135deg,#7c5cff,#38bdf8)">✓</span>
-                  <div>
-                    <div class="text-sm font-semibold text-text">{{ cert.name }}</div>
-                    <div class="text-xs text-text-muted">{{ cert.issuer }}</div>
+                <div appTilt class="reveal glass glass-hover rounded-xl overflow-hidden group relative">
+                  <img [src]="cert.image" [alt]="cert.name" loading="lazy" decoding="async"
+                    class="absolute inset-0 w-full h-full object-cover opacity-20 transition-all duration-700 group-hover:opacity-40 group-hover:scale-110" />
+                  <div class="absolute inset-0" style="background:linear-gradient(120deg, rgba(5,6,15,0.95) 35%, rgba(5,6,15,0.62) 100%)"></div>
+                  <div class="relative p-4 flex items-center gap-3">
+                    <span class="node-icon grid place-items-center w-10 h-10 rounded-lg shrink-0 text-white">✓</span>
+                    <div class="min-w-0">
+                      <div class="text-sm font-semibold text-text leading-snug">{{ cert.name }}</div>
+                      <div class="mt-0.5 flex items-center gap-2 text-xs text-text-muted">
+                        <span>{{ cert.issuer }}</span>
+                        <span class="px-1.5 py-0.5 rounded font-mono text-[10px]"
+                          style="background:rgba(124,92,255,0.15);border:1px solid rgba(124,92,255,0.3);color:#9b86ff">{{ cert.code }}</span>
+                        <span class="font-mono text-[10px]">{{ cert.year }}</span>
+                      </div>
+                    </div>
                   </div>
                 </div>
               }
@@ -99,9 +132,21 @@ import { TiltDirective } from '../shared/tilt.directive';
             <app-section-header eyebrow="Education" title="Education" />
             <div class="space-y-3">
               @for (edu of education; track edu.school) {
-                <div class="reveal glass glass-hover rounded-xl p-5">
-                  <div class="font-semibold text-text">{{ edu.school }}</div>
-                  <div class="text-sm text-text-muted">{{ edu.degree }}</div>
+                <div appTilt class="reveal glass glass-hover rounded-xl overflow-hidden group relative">
+                  <img [src]="edu.image" [alt]="edu.school" loading="lazy" decoding="async"
+                    class="absolute inset-0 w-full h-full object-cover opacity-20 transition-all duration-700 group-hover:opacity-40 group-hover:scale-110" />
+                  <div class="absolute inset-0" style="background:linear-gradient(120deg, rgba(5,6,15,0.95) 30%, rgba(5,6,15,0.65) 100%)"></div>
+                  <div class="relative p-5">
+                    <div class="flex items-start justify-between gap-3">
+                      <div class="min-w-0">
+                        <div class="font-semibold text-text">{{ edu.school }}</div>
+                        <div class="text-sm text-text-muted">{{ edu.degree }}</div>
+                      </div>
+                      <span class="shrink-0 font-mono text-[10px] px-2 py-1 rounded-full"
+                        style="background:rgba(56,189,248,0.12);border:1px solid rgba(56,189,248,0.28);color:#7dd3fc">{{ edu.period }}</span>
+                    </div>
+                    <p class="mt-3 text-xs text-text-muted leading-relaxed">{{ edu.detail }}</p>
+                  </div>
                 </div>
               }
             </div>
@@ -111,6 +156,13 @@ import { TiltDirective } from '../shared/tilt.directive';
     </section>
   `,
   styles: [`
+    .node-icon {
+      background: linear-gradient(135deg, rgba(124,92,255,0.9), rgba(56,189,248,0.85));
+      box-shadow: 0 8px 24px -10px rgba(124,92,255,0.8);
+      transition: transform 0.4s cubic-bezier(0.22,1,0.36,1);
+    }
+    .group:hover .node-icon,
+    .quality-card:hover .node-icon { transform: rotate(-6deg) scale(1.08); }
     .arch-arrow {
       width: 2px; height: 22px;
       background: linear-gradient(180deg, rgba(124,92,255,0.8), rgba(56,189,248,0.4));
