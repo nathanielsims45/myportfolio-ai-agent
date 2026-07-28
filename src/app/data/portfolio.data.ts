@@ -154,6 +154,56 @@ export const PROJECTS: ProjectItem[] = [
     image: 'assets/casino/silverskystake-blog.jpg',
     repo: 'https://github.com/nathanielsims45',
   },
+  {
+    title: 'Runeverse: Alpha Origins',
+    category: 'Web3 / NFT',
+    description:
+      'NFT collection landing page with wallet connect, lore-driven world sections, and a live collection grid — built to feel cinematic without hurting load time.',
+    tech: ['Angular', 'TypeScript', 'Web3', 'GSAP'],
+    accent: '#ef4444',
+    image: 'assets/casino/runeverse-hero.jpg',
+    repo: 'https://github.com/nathanielsims45',
+  },
+  {
+    title: 'Runeverse Story Vote',
+    category: 'Web3 / NFT',
+    description:
+      'Weekly community feature: video story panel, character voting grid, and an FAQ accordion — all state-driven Angular components over the same design tokens.',
+    tech: ['Angular', 'Signals', 'SCSS', 'Accessibility'],
+    accent: '#f97316',
+    image: 'assets/casino/runeverse-vote.jpg',
+    repo: 'https://github.com/nathanielsims45',
+  },
+  {
+    title: 'NFT UI Marketplace',
+    category: 'Web3',
+    description:
+      'NFT buy/sell marketplace frontend — trending collections, bidding cards, top-seller rail, and reviews, built as a reusable Angular template.',
+    tech: ['Angular', 'RxJS', 'Tailwind', 'Carousel'],
+    accent: '#a855f7',
+    image: 'assets/casino/nftui-hero.jpg',
+    repo: 'https://github.com/nathanielsims45',
+  },
+  {
+    title: 'Tournaments.com',
+    category: 'Esports',
+    description:
+      'Esports tournament platform — creation hub, rewards system, performance tracker, and a live leaderboard table built for fast scanning on any device.',
+    tech: ['Angular', 'RxJS', 'ApexCharts', 'Tailwind'],
+    accent: '#818cf8',
+    image: 'assets/casino/tournaments-hero.jpg',
+    repo: 'https://github.com/nathanielsims45',
+  },
+  {
+    title: 'MaxiBet Casino',
+    category: 'Casino',
+    description:
+      'Sportsbook + casino hybrid frontend with live jackpot ticker, game-show rail, and a payment-method strip — dense UI kept scannable with a strict visual hierarchy.',
+    tech: ['Angular', 'RxJS', 'SCSS', 'i18n'],
+    accent: '#fb923c',
+    image: 'assets/casino/maxibet-hero.jpg',
+    repo: 'https://github.com/nathanielsims45',
+  },
 ];
 
 export const AI_SOLUTIONS = [
