@@ -18,7 +18,8 @@ import { TiltDirective } from '../shared/tilt.directive';
         <div class="grid lg:grid-cols-2 gap-10 items-center">
           <div class="reveal relative">
             <div appTilt class="glass gradient-border rounded-3xl overflow-hidden aspect-[4/5] max-w-md mx-auto relative">
-              <img [src]="profile.image" [alt]="profile.name" loading="lazy"
+              <img [src]="profile.image" [alt]="profile.name" loading="lazy" decoding="async"
+                width="585" height="905"
                 class="w-full h-full object-cover" />
               <div class="absolute inset-0"
                 style="background:linear-gradient(180deg, transparent 40%, rgba(5,6,15,0.85) 100%), radial-gradient(circle at var(--glow-x,50%) var(--glow-y,50%), rgba(124,92,255,0.35), transparent 55%)"></div>

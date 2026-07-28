@@ -1,0 +1,13 @@
+{
+  "name": "Nathaniel Sims — Angular + .NET Architect",
+  "short_name": "Nathaniel Sims",
+  "description": "Senior full stack engineer specializing in Angular, .NET, cloud architecture, and AI systems.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#05060f",
+  "theme_color": "#7c5cff",
+  "icons": [
+    { "src": "assets/favicon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "assets/favicon-512.png", "sizes": "512x512", "type": "image/png" }
+  ]
+}

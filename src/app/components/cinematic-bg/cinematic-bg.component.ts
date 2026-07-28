@@ -39,10 +39,12 @@ export class CinematicBgComponent implements AfterViewInit, OnDestroy {
   private wordData: { x: number; y: number; vx: number; vy: number; rot: number; vr: number; phase: number }[] = [];
   private wordHost?: HTMLElement;
 
-  constructor(private zone: NgZone) {}
+  constructor(private zone: NgZone) {
+    this.reduced = window.matchMedia('(max-width: 820px)').matches;
+    this.buildTechWords();
+  }
 
   ngAfterViewInit(): void {
-    this.reduced = window.matchMedia('(max-width: 820px)').matches;
     this.zone.runOutsideAngular(() => this.init());
   }
 
@@ -69,7 +71,8 @@ export class CinematicBgComponent implements AfterViewInit, OnDestroy {
     this.buildConstellation();
     this.buildOrbs();
     this.buildStars();
-    this.buildTechWords();
+    this.wordHost = this.canvasRef.nativeElement.parentElement?.querySelector('.tech-words') as HTMLElement;
+    this.wordEls = Array.from(this.wordHost?.querySelectorAll('.tech-word') ?? []);
 
     window.addEventListener('resize', this.onResize);
     window.addEventListener('mousemove', this.onMouseMove);
@@ -199,10 +202,6 @@ export class CinematicBgComponent implements AfterViewInit, OnDestroy {
       this.techWords.push({ text, style: `opacity:0` });
       this.wordData.push({ x, y, vx: (Math.random() - 0.5) * 0.3, vy: (Math.random() - 0.5) * 0.3, rot: (Math.random() - 0.5) * 20, vr: (Math.random() - 0.5) * 0.1, phase: Math.random() * Math.PI * 2 });
     }
-    queueMicrotask(() => {
-      this.wordHost = this.canvasRef.nativeElement.parentElement?.querySelector('.tech-words') as HTMLElement;
-      this.wordEls = Array.from(this.wordHost?.querySelectorAll('.tech-word') ?? []);
-    });
   }
 
   private updateTechWords(t: number) {

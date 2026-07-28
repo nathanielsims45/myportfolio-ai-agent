@@ -29,7 +29,7 @@ export const PROFILE = {
   email: 'nathaniel.sims@example.com',
   github: 'https://github.com/',
   linkedin: 'https://www.linkedin.com/',
-  image: 'https://images.pexels.com/photos/2381069/pexels-photo-2381069.jpeg?auto=compress&cs=tinysrgb&w=800',
+  image: 'assets/me.webp',
 };
 
 export const STATS = [

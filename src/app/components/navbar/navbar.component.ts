@@ -1,11 +1,9 @@
 import { Component, signal, HostListener, inject } from '@angular/core';
-import { RouterLink } from '@angular/router';
 
 interface NavItem { label: string; href: string; }
 
 @Component({
   selector: 'app-navbar',
-  imports: [RouterLink],
   template: `
     <header
       class="fixed top-0 inset-x-0 z-50 transition-all duration-500"
@@ -14,7 +12,7 @@ interface NavItem { label: string; href: string; }
       [style.border-color]="scrolled() ? 'rgba(124,92,255,0.18)' : 'transparent'"
     >
       <nav class="container-x flex items-center justify-between px-6 h-16">
-        <a routerLink="/" class="flex items-center gap-2 font-semibold tracking-tight">
+        <a href="#home" class="flex items-center gap-2 font-semibold tracking-tight">
           <span class="grid place-items-center w-8 h-8 rounded-lg"
             style="background:linear-gradient(135deg,#7c5cff,#38bdf8);box-shadow:var(--shadow-glow)">NS</span>
           <span class="gradient-text">Nathaniel Sims</span>

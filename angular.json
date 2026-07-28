@@ -25,7 +25,10 @@
             }
           },
           "options": {
-            "assets": [],
+            "assets": [
+              { "glob": "**/*", "input": "src/assets", "output": "assets" },
+              { "glob": "**/*", "input": "src/public-root", "output": "." }
+            ],
             "index": "src/index.html",
             "browser": "src/main.ts",
             "outputPath": "dist/demo",
