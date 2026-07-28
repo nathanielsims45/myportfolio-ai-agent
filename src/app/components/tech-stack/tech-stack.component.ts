@@ -119,10 +119,12 @@ export class TechStackComponent implements AfterViewInit, OnDestroy {
       const maxCardW = this.cardW || 150;
       const maxCardH = this.cardH || CARD_H;
 
-      // If the container is too narrow to fit a full-size card on both sides
-      // of the orbit, shrink the cards rather than letting them spill out.
-      const fitScale = Math.min(1, (w / 2 - 16) / ((maxCardW * HOVER_SCALE) / 2 + 88));
-      const cardScale = Math.max(0.72, fitScale);
+      // Narrow viewports cannot fit a full-size card on both sides of the
+      // orbit. Shrink cards enough that a real orbit still exists; the floor
+      // is low so the ring never collapses onto the center card.
+      const wantRx = Math.max(96, w * 0.3);
+      const fitScale = Math.min(1, (w / 2 - wantRx - 6) / ((maxCardW * HOVER_SCALE) / 2));
+      const cardScale = Math.max(0.5, fitScale);
 
       const padX = (maxCardW * cardScale * HOVER_SCALE) / 2 + 8;
       const padY = (maxCardH * cardScale * HOVER_SCALE) / 2 + BOB_PX + 8;

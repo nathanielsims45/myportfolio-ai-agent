@@ -1,12 +1,23 @@
 <section id="stack" class="section-pad relative">
   <div class="container-x">
     <app-section-header eyebrow="Tech Stack" title="The technologies I build with"
-      subtitle="Twelve core technologies across frontend, cloud, and AI. Hover or tap any card to focus it." />
+      subtitle="Twelve core technologies across frontend, cloud, and AI." />
+
+    <!-- Narrow screens: a 12-card orbit collapses onto itself and becomes
+         unreadable, so show a plain grid instead. -->
+    <div class="grid grid-cols-2 gap-3 sm:hidden">
+      @for (card of cards; track card.label) {
+        <div class="stack-tile glass" [style.--tech]="card.color">
+          <span class="orbit-badge">{{ card.icon }}</span>
+          <span class="orbit-label">{{ card.label }}</span>
+        </div>
+      }
+    </div>
 
     <!-- No `reveal` on the orbit wrapper: it applies a transform, which would
          become the containing block for the absolutely-positioned cards and
          throw off the coordinates computed in the component. -->
-    <div class="relative orbit-fade h-[420px] sm:h-[520px] lg:h-[600px] xl:h-[660px]">
+    <div class="relative orbit-fade hidden sm:block h-[520px] lg:h-[600px] xl:h-[660px]">
       <div #orbitHost class="absolute inset-0 orbit-host">
         <div class="orbit-core-glow"></div>
         <div class="orbit-line">

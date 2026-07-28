@@ -204,3 +204,15 @@
   .orbit-core-glow, .orbit-ring, .orbit-center,
   .orbit-center-ping, .orbit-pulse { animation: none !important; }
 }
+
+/* Mobile fallback: readable grid instead of a collapsed orbit. */
+.stack-tile {
+  display: flex; align-items: center; gap: 0.6rem;
+  padding: 0.75rem 0.85rem;
+  border-radius: 0.85rem;
+  font-size: 0.85rem; font-weight: 700;
+  border-color: color-mix(in srgb, var(--tech) 35%, transparent);
+  box-shadow: 0 10px 30px -14px rgba(0,0,0,0.9), inset 0 1px 0 rgba(255,255,255,0.06);
+}
+.stack-tile .orbit-badge { width: 24px; height: 24px; font-size: 0.7rem; }
+.stack-tile .orbit-label { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
