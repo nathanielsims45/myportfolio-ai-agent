@@ -13,7 +13,7 @@ const BOB_PX = 4;
 /** Frames to keep re-measuring card size before trusting the cache (~2s). */
 const MEASURE_FRAMES = 120;
 /** How often a random card auto-focuses itself. */
-const AUTO_EVERY_MS = 10_000;
+const AUTO_EVERY_MS = 5_000;
 /** How long each auto-focus lasts. */
 const AUTO_HOLD_MS = 2_000;
 

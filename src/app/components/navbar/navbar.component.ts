@@ -76,7 +76,6 @@ export class NavbarComponent {
   items: NavItem[] = [
     { label: 'Home', href: '#home' },
     { label: 'Stack', href: '#stack' },
-    { label: 'Brands', href: '#brands' },
     { label: 'About', href: '#about' },
     { label: 'Experience', href: '#experience' },
     { label: 'Skills', href: '#skills' },

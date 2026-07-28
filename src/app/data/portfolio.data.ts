@@ -83,7 +83,7 @@ export const EXPERIENCE: ExperienceItem[] = [
       'Shipped a shared Angular component library reused across four crypto products',
       'Cut Largest Contentful Paint 44% with lazy routes, OnPush, and image budgets',
     ],
-    image: 'assets/uploads/2026/04/Xchain-1X-500x500.png',
+    image: 'assets/casino/silverskystake-thumb.jpg',
   },
   {
     company: 'Casino & iGaming Platforms',
@@ -96,7 +96,7 @@ export const EXPERIENCE: ExperienceItem[] = [
       'Built responsive game lobbies with filtering, search, and skeleton loading states',
       'Partnered with designers on UX flows, then owned the production frontend build',
     ],
-    image: 'assets/uploads/2026/04/luckystrike-1X-500x500.png',
+    image: 'assets/casino/7zone-casino-thumb.jpg',
   },
   {
     company: 'Product & Brand Frontend Work',
@@ -109,69 +109,49 @@ export const EXPERIENCE: ExperienceItem[] = [
       'Introduced reusable SCSS architecture and a shared UI kit',
       'Improved Core Web Vitals across a portfolio of client sites',
     ],
-    image: 'assets/uploads/2021/02/Bizurk-Software-Dark-logo-500px-White-min.png',
+    image: 'assets/casino/silverskystake-blog.jpg',
   },
 ];
 
 export const PROJECTS: ProjectItem[] = [
   {
-    title: 'XChain',
-    category: 'Crypto',
-    description:
-      'Multi-chain explorer frontend in Angular — live block and transaction feeds, address search, and a dense data UI that stays readable on mobile.',
-    tech: ['Angular', 'TypeScript', 'RxJS', 'WebSockets', 'SCSS'],
-    accent: '#3b82f6',
-    image: 'assets/uploads/2026/04/Xchain-1X-500x500.png',
-    repo: 'https://github.com/nathanielsims45',
-  },
-  {
-    title: 'OKBIX Exchange',
-    category: 'Trading UI',
-    description:
-      'Trading interface with real-time order books, candlestick charts, and a responsive layout that reflows from multi-pane desktop to single-column mobile.',
-    tech: ['Angular', 'RxJS', 'ApexCharts', 'Tailwind'],
-    accent: '#06b6d4',
-    image: 'assets/uploads/2026/04/OKBIX-2-1X-500x500.png',
-    repo: 'https://github.com/nathanielsims45',
-  },
-  {
-    title: 'MVX Token',
-    category: 'Web3',
-    description:
-      'Liquid-staking dashboard frontend: wallet connection, staking flows, and portfolio breakdowns built as reusable Angular components.',
-    tech: ['Angular', 'ethers.js', 'Signals', 'SCSS'],
-    accent: '#2563eb',
-    image: 'assets/uploads/2026/04/MVX-TOKEN-1X-500x500.png',
-    repo: 'https://github.com/nathanielsims45',
-  },
-  {
-    title: 'Lucky Strike',
+    title: '7Zone Casino',
     category: 'Casino',
     description:
-      'Casino game lobby and spin interface — animated reveals, prize states, and a promo system built mobile-first with Angular animations and GSAP.',
-    tech: ['Angular', 'GSAP', 'TypeScript', 'Tailwind'],
-    accent: '#f59e0b',
-    image: 'assets/uploads/2026/04/luckystrike-1X-500x500.png',
+      'Full casino lobby frontend — slots, live tables, tournaments, and jackpot promos in one dense but readable Angular layout that holds up on mobile.',
+    tech: ['Angular', 'RxJS', 'SCSS', 'Lazy Loading'],
+    accent: '#22c55e',
+    image: 'assets/casino/7zone-casino-thumb.jpg',
     repo: 'https://github.com/nathanielsims45',
   },
   {
-    title: 'Lucky Chain',
-    category: 'iGaming',
+    title: '7Zone Game Lobby',
+    category: 'Casino',
     description:
-      'On-chain sweepstakes frontend combining wallet flows with game UI — provably-fair result screens and a clear, accessible reward history.',
-    tech: ['Angular', 'Web3', 'RxJS', 'SCSS'],
-    accent: '#10b981',
-    image: 'assets/uploads/2026/04/LuckyChain-1X-500x500.png',
+      'Filterable game grid with promo banners, tournament tiles, and a fast-games rail — built with skeleton loading and virtual scroll for hundreds of tiles.',
+    tech: ['Angular', 'Signals', 'Tailwind', 'Skeleton States'],
+    accent: '#16a34a',
+    image: 'assets/casino/7zone-casino-lobby.jpg',
     repo: 'https://github.com/nathanielsims45',
   },
   {
-    title: 'BTC Pro',
-    category: 'Crypto',
+    title: 'SilverSkyStake',
+    category: 'Crypto Casino',
     description:
-      'Market data and news frontend with live price tickers, watchlists, and chart-heavy views tuned for fast first paint on mobile connections.',
-    tech: ['Angular', 'RxJS', 'ApexCharts', 'SSR'],
-    accent: '#f7931a',
-    image: 'assets/uploads/2021/02/BTCpro-1x-min-500x500.png',
+      'Crypto-native casino dashboard with a BTC balance, live game categories, and a dark theme tuned for long sessions without eye strain.',
+    tech: ['Angular', 'TypeScript', 'Web3', 'SCSS'],
+    accent: '#2dd4bf',
+    image: 'assets/casino/silverskystake-thumb.jpg',
+    repo: 'https://github.com/nathanielsims45',
+  },
+  {
+    title: 'SilverSkyStake Blog',
+    category: 'Content UI',
+    description:
+      'Editorial section inside the same product — category filters, card grids, and consistent typography reusing the core design system.',
+    tech: ['Angular', 'SSR', 'SCSS', 'Design Tokens'],
+    accent: '#38bdf8',
+    image: 'assets/casino/silverskystake-blog.jpg',
     repo: 'https://github.com/nathanielsims45',
   },
 ];
@@ -248,16 +228,3 @@ export const CODE_QUALITY = [
   { label: 'Component Tests', icon: '▤', detail: 'Behaviour over implementation' },
 ];
 
-/** Brand logos from client work — used for the marquee strip. */
-export const BRANDS = [
-  { name: 'XChain', image: 'assets/uploads/2026/04/Xchain-1X-500x500.png' },
-  { name: 'OKBIX', image: 'assets/uploads/2026/04/OKBIX-2-1X-500x500.png' },
-  { name: 'MVX', image: 'assets/uploads/2026/04/MVX-TOKEN-1X-500x500.png' },
-  { name: 'Lucky Strike', image: 'assets/uploads/2026/04/luckystrike-1X-500x500.png' },
-  { name: 'Lucky Chain', image: 'assets/uploads/2026/04/LuckyChain-1X-500x500.png' },
-  { name: 'BTC Pro', image: 'assets/uploads/2021/02/BTCpro-1x-min-500x500.png' },
-  { name: 'xCurrency', image: 'assets/uploads/2026/04/xCurrency-1X-500x500.png' },
-  { name: 'Tyqoon', image: 'assets/uploads/2026/04/TYQOON-1X-500x500.png' },
-  { name: 'Winmall', image: 'assets/uploads/2026/04/Winmall-1X-500x500.png' },
-  { name: 'World Club', image: 'assets/uploads/2026/04/Worldclub-1X-500x500.png' },
-];
