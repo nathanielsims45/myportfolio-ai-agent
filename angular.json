@@ -40,6 +40,9 @@
         },
         "serve": {
           "builder": "@angular/build:dev-server",
+          "options": {
+            "allowedHosts": ["nathanielsims.bounceme.net", "host.docker.internal"]
+          },
           "configurations": {
             "development": {
               "buildTarget": "demo:build:development"
