@@ -1,4 +1,4 @@
-export interface Skill { name: string; level: number; }
+export interface Skill { name: string; level: number; image: string; accent: string; }
 
 export interface ExperienceItem {
   company: string;
@@ -16,9 +16,10 @@ export interface ProjectItem {
   tech: string[];
   accent: string;
   image: string;
+  repo: string;
 }
 
-export interface OrbitCard { label: string; ring: number; }
+export interface OrbitCard { label: string; ring: number; color: string; icon: string; }
 
 export const PROFILE = {
   name: 'Nathaniel Sims',
@@ -26,9 +27,10 @@ export const PROFILE = {
   subtitle: 'Azure | Healthcare | FinTech',
   rate: '$70/hr',
   availability: 'Available for Enterprise Projects',
-  email: 'nathaniel.sims@example.com',
-  github: 'https://github.com/',
-  linkedin: 'https://www.linkedin.com/',
+  github: 'https://github.com/nathanielsims45',
+  githubHandle: 'nathanielsims45',
+  location: 'Albuquerque, New Mexico · Remote worldwide',
+  timezone: 'UTC−7 (MST) · Overlaps US + EU mornings',
   image: 'assets/me.webp',
 };
 
@@ -39,31 +41,34 @@ export const STATS = [
   { label: 'Cloud Architectures', value: 40, suffix: '+' },
 ];
 
+const PX = (id: string, w = 800) =>
+  `https://images.pexels.com/photos/${id}/pexels-photo-${id}.jpeg?auto=compress&cs=tinysrgb&w=${w}`;
+
 export const SKILLS: Skill[] = [
-  { name: 'Angular', level: 95 },
-  { name: 'Azure', level: 95 },
-  { name: '.NET', level: 98 },
-  { name: 'RxJS', level: 92 },
-  { name: 'TailwindCSS', level: 95 },
-  { name: 'TypeScript', level: 96 },
-  { name: 'Power BI', level: 90 },
-  { name: 'Node.js', level: 88 },
-  { name: 'Python', level: 85 },
+  { name: 'Angular', level: 95, accent: '#f87171', image: PX('11035380') },
+  { name: 'Azure', level: 95, accent: '#38bdf8', image: PX('1181280') },
+  { name: '.NET', level: 98, accent: '#7c5cff', image: PX('4164418') },
+  { name: 'RxJS', level: 92, accent: '#9b86ff', image: PX('1476321') },
+  { name: 'TailwindCSS', level: 95, accent: '#7dd3fc', image: PX('196644') },
+  { name: 'TypeScript', level: 96, accent: '#38bdf8', image: PX('574071') },
+  { name: 'Power BI', level: 90, accent: '#fbbf24', image: PX('590022') },
+  { name: 'Node.js', level: 88, accent: '#34d399', image: PX('160107') },
+  { name: 'Python', level: 85, accent: '#facc15', image: PX('1181671') },
 ];
 
 export const ORBIT_CARDS: OrbitCard[] = [
-  { label: 'Angular', ring: 0 },
-  { label: 'TypeScript', ring: 0 },
-  { label: 'RxJS', ring: 0 },
-  { label: 'Azure', ring: 0 },
-  { label: 'ASP.NET Core', ring: 1 },
-  { label: 'C#', ring: 1 },
-  { label: 'AI Agents', ring: 1 },
-  { label: 'Power BI', ring: 1 },
-  { label: 'TailwindCSS', ring: 2 },
-  { label: 'Ionic', ring: 2 },
-  { label: 'Azure OpenAI', ring: 2 },
-  { label: 'PostgreSQL', ring: 2 },
+  { label: 'Angular', ring: 0, color: '#dd0031', icon: '△' },
+  { label: 'TypeScript', ring: 0, color: '#3178c6', icon: 'TS' },
+  { label: 'RxJS', ring: 0, color: '#e0234e', icon: '∿' },
+  { label: 'Azure', ring: 0, color: '#0089d6', icon: '☁' },
+  { label: 'ASP.NET Core', ring: 1, color: '#512bd4', icon: '❖' },
+  { label: 'C#', ring: 1, color: '#68217a', icon: 'C#' },
+  { label: 'AI Agents', ring: 1, color: '#10a37f', icon: '✦' },
+  { label: 'Power BI', ring: 1, color: '#f2c811', icon: '▤' },
+  { label: 'TailwindCSS', ring: 2, color: '#38bdf8', icon: '≋' },
+  { label: 'Ionic', ring: 2, color: '#3880ff', icon: '◉' },
+  { label: 'Azure OpenAI', ring: 2, color: '#00a67e', icon: '⬡' },
+  { label: 'PostgreSQL', ring: 2, color: '#4169e1', icon: '▣' },
 ];
 
 export const EXPERIENCE: ExperienceItem[] = [
@@ -117,6 +122,7 @@ export const PROJECTS: ProjectItem[] = [
     tech: ['Angular', 'Azure', '.NET', 'FHIR', 'SignalR'],
     accent: '#38bdf8',
     image: 'https://images.pexels.com/photos/263402/pexels-photo-263402.jpeg?auto=compress&cs=tinysrgb&w=900',
+    repo: 'https://github.com/nathanielsims45/healthcare-platform',
   },
   {
     title: 'Enterprise CRM',
@@ -126,6 +132,7 @@ export const PROJECTS: ProjectItem[] = [
     tech: ['Angular', 'ASP.NET Core', 'PostgreSQL', 'Power BI'],
     accent: '#7c5cff',
     image: 'https://images.pexels.com/photos/3184292/pexels-photo-3184292.jpeg?auto=compress&cs=tinysrgb&w=900',
+    repo: 'https://github.com/nathanielsims45/enterprise-crm',
   },
   {
     title: 'Azure AI Agent',
@@ -135,6 +142,7 @@ export const PROJECTS: ProjectItem[] = [
     tech: ['Azure OpenAI', 'Angular', 'LangChain', 'Cognitive Search'],
     accent: '#34d399',
     image: 'https://images.pexels.com/photos/8386440/pexels-photo-8386440.jpeg?auto=compress&cs=tinysrgb&w=900',
+    repo: 'https://github.com/nathanielsims45/azure-ai-agent',
   },
   {
     title: 'Financial Dashboard',
@@ -144,6 +152,7 @@ export const PROJECTS: ProjectItem[] = [
     tech: ['Angular', 'RxJS', 'WebSockets', 'SQL Server'],
     accent: '#fbbf24',
     image: 'https://images.pexels.com/photos/590016/pexels-photo-590016.jpeg?auto=compress&cs=tinysrgb&w=900',
+    repo: 'https://github.com/nathanielsims45/financial-dashboard',
   },
   {
     title: 'Power BI Analytics',
@@ -153,6 +162,7 @@ export const PROJECTS: ProjectItem[] = [
     tech: ['Power BI', 'Angular', 'Azure Functions', 'Azure SQL'],
     accent: '#f87171',
     image: 'https://images.pexels.com/photos/590059/pexels-photo-590059.jpeg?auto=compress&cs=tinysrgb&w=900',
+    repo: 'https://github.com/nathanielsims45/powerbi-analytics',
   },
   {
     title: 'Document AI',
@@ -162,6 +172,7 @@ export const PROJECTS: ProjectItem[] = [
     tech: ['Azure Doc Intel', 'Azure OpenAI', 'Python', 'Angular'],
     accent: '#9b86ff',
     image: 'https://images.pexels.com/photos/265087/pexels-photo-265087.jpeg?auto=compress&cs=tinysrgb&w=900',
+    repo: 'https://github.com/nathanielsims45/document-ai',
   },
 ];
 
@@ -177,40 +188,63 @@ export const AI_SOLUTIONS = [
 ];
 
 export const CERTIFICATIONS = [
-  { name: 'Azure Solutions Architect', issuer: 'Microsoft' },
-  { name: 'Azure AI Engineer', issuer: 'Microsoft' },
-  { name: '.NET Developer', issuer: 'Microsoft' },
-  { name: 'Angular Certified', issuer: 'Angular' },
-  { name: 'Power BI Data Analyst', issuer: 'Microsoft' },
+  { name: 'Azure Solutions Architect', issuer: 'Microsoft', code: 'AZ-305', year: '2024', image: PX('1181298', 600) },
+  { name: 'Azure AI Engineer', issuer: 'Microsoft', code: 'AI-102', year: '2024', image: PX('8386434', 600) },
+  { name: '.NET Developer', issuer: 'Microsoft', code: 'MCSD', year: '2021', image: PX('11035471', 600) },
+  { name: 'Angular Certified', issuer: 'Angular', code: 'ADV', year: '2023', image: PX('4164418', 600) },
+  { name: 'Power BI Data Analyst', issuer: 'Microsoft', code: 'PL-300', year: '2023', image: PX('590041', 600) },
 ];
 
 export const EDUCATION = [
-  { school: 'University of New Mexico', degree: 'B.S. Information Technology' },
-  { school: 'Central New Mexico Community College', degree: 'A.A.S. Computer Information Systems' },
+  {
+    school: 'University of New Mexico',
+    degree: 'B.S. Information Technology',
+    period: '2001 – 2005',
+    detail: 'Focus on distributed systems, databases, and software engineering.',
+    image: PX('207692', 900),
+  },
+  {
+    school: 'Central New Mexico Community College',
+    degree: 'A.A.S. Computer Information Systems',
+    period: '1999 – 2001',
+    detail: 'Foundations in programming, networking, and systems administration.',
+    image: PX('256490', 900),
+  },
 ];
 
-export const ARCHITECTURE_FLOW = [
-  'Microservices',
-  'Azure',
-  'API Gateway',
-  'Angular Frontend',
-  'Authentication',
-  'Databases',
-  'AI Services',
+export interface FlowNode { label: string; detail: string; icon: string; image: string; }
+
+export const ARCHITECTURE_FLOW: FlowNode[] = [
+  { label: 'Microservices', detail: 'Domain-bounded .NET services', icon: '◈', image: PX('1181244', 600) },
+  { label: 'Azure', detail: 'Managed cloud backbone', icon: '☁', image: PX('1148820', 600) },
+  { label: 'API Gateway', detail: 'Routing, throttling, versioning', icon: '⇄', image: PX('2881229', 600) },
+  { label: 'Angular Frontend', detail: 'Standalone components + signals', icon: '△', image: PX('11035380', 600) },
+  { label: 'Authentication', detail: 'Entra ID, OAuth2, RBAC', icon: '⚿', image: PX('5473955', 600) },
+  { label: 'Databases', detail: 'Azure SQL + PostgreSQL', icon: '▤', image: PX('1181671', 600) },
+  { label: 'AI Services', detail: 'Azure OpenAI + vector search', icon: '✦', image: PX('8386440', 600) },
 ];
 
-export const CLOUD_FLOW = [
-  'Azure',
-  'API Management',
-  'App Services',
-  'Functions',
-  'Azure SQL',
-  'Storage',
-  'OpenAI',
-  'Angular Frontend',
+export const CLOUD_FLOW: FlowNode[] = [
+  { label: 'Azure', detail: 'Subscription + landing zone', icon: '☁', image: PX('1148820', 600) },
+  { label: 'API Management', detail: 'Policies, quotas, developer portal', icon: '⇄', image: PX('2881229', 600) },
+  { label: 'App Services', detail: 'Containerised web APIs', icon: '▢', image: PX('325229', 600) },
+  { label: 'Functions', detail: 'Event-driven serverless jobs', icon: '⚡', image: PX('355952', 600) },
+  { label: 'Azure SQL', detail: 'Elastic pools, geo-replication', icon: '▤', image: PX('1181671', 600) },
+  { label: 'Storage', detail: 'Blob, queues, CDN delivery', icon: '⬢', image: PX('442150', 600) },
+  { label: 'OpenAI', detail: 'GPT deployments with guardrails', icon: '✦', image: PX('8849295', 600) },
+  { label: 'Angular Frontend', detail: 'SSR + edge caching', icon: '△', image: PX('11035380', 600) },
 ];
 
 export const CODE_QUALITY = [
-  'Standalone Components', 'Signals', 'RxJS', 'SSR', 'SEO', 'Accessibility',
-  'Lazy Loading', 'Performance', 'State Management', 'Dependency Injection', 'Testing',
+  { label: 'Standalone Components', icon: '◈', detail: 'Zero NgModule boilerplate' },
+  { label: 'Signals', icon: '⚡', detail: 'Fine-grained reactivity' },
+  { label: 'RxJS', icon: '∿', detail: 'Declarative async streams' },
+  { label: 'SSR', icon: '▤', detail: 'Fast first paint, hydration' },
+  { label: 'SEO', icon: '◎', detail: 'Meta, schema, sitemaps' },
+  { label: 'Accessibility', icon: '☺', detail: 'WCAG 2.2 AA baseline' },
+  { label: 'Lazy Loading', icon: '⇣', detail: 'Route-level code splitting' },
+  { label: 'Performance', icon: '↗', detail: 'Strict budgets in CI' },
+  { label: 'State Management', icon: '▦', detail: 'Signal stores, immutability' },
+  { label: 'Dependency Injection', icon: '⇄', detail: 'Typed, tree-shakable providers' },
+  { label: 'Testing', icon: '✓', detail: 'Unit, component, and e2e' },
 ];
