@@ -19,31 +19,44 @@
 
       <div class="mt-8 flex flex-wrap gap-3">
         <a href="#projects" class="btn-primary">View Projects</a>
-        <a href="#contact" class="btn-ghost">Download Resume</a>
+        <a [href]="profile.github" target="_blank" rel="noopener noreferrer" class="btn-ghost inline-flex items-center gap-2">
+          <svg viewBox="0 0 16 16" width="15" height="15" fill="currentColor" aria-hidden="true">
+            <path d="M8 0C3.58 0 0 3.58 0 8a8 8 0 0 0 5.47 7.59c.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82a7.4 7.4 0 0 1 2-.27c.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/>
+          </svg>
+          GitHub
+        </a>
         <a href="#contact" class="btn-ghost">Contact Me</a>
       </div>
     </div>
 
     <!-- Right: orbit -->
     <div class="reveal relative h-[520px] sm:h-[620px]">
-      <div #orbitHost class="absolute inset-0">
-        <div class="orbit-line"></div>
+      <div #orbitHost class="absolute inset-0 orbit-host">
+        <div class="orbit-core-glow"></div>
+        <div class="orbit-line">
+          <span class="orbit-pulse"></span>
+        </div>
         <div class="orbit-ring ring-0"></div>
         <div class="orbit-ring ring-1"></div>
         <div class="orbit-ring ring-2"></div>
         <div class="orbit-center glass gradient-border">
+          <div class="orbit-center-ping"></div>
           <div class="text-xs eyebrow">Angular Expert</div>
-          <div class="mt-1 text-sm font-semibold text-text">Nathaniel Sims</div>
+          <div class="mt-1 text-sm font-bold text-text tracking-tight">Nathaniel Sims</div>
+          <div class="mt-1 text-[10px] font-mono text-text-muted">12 core technologies</div>
         </div>
         @for (card of cards; track card.label; let i = $index) {
           <div
-            class="orbit-card glass glass-hover"
+            class="orbit-card glass"
             (mouseenter)="onEnter(i)"
             (mouseleave)="onLeave()"
             [class.is-hover]="hovered() === i"
+            [class.is-dimmed]="hovered() !== null && hovered() !== i"
+            [style.--tech]="card.color"
           >
-            <span class="orbit-dot" [style.background]="$any(ringColors[card.ring])"></span>
-            {{ card.label }}
+            <span class="orbit-badge">{{ card.icon }}</span>
+            <span class="orbit-label">{{ card.label }}</span>
+            <span class="orbit-sheen"></span>
           </div>
         }
       </div>

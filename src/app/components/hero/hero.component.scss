@@ -20,17 +20,67 @@
 }
 .btn-ghost:hover { border-color: rgba(124,92,255,0.5); background: rgba(124,92,255,0.08); }
 
-.orbit-host { position: relative; }
+.orbit-host {
+  position: relative;
+  perspective: 1200px;
+  /* Rings are sized from the container; clip any residual overhang so the
+     system never bleeds over the navbar or the hero copy. */
+  overflow: hidden;
+}
+
+/* Breathing core glow behind the whole system */
+.orbit-core-glow {
+  position: absolute; left: 50%; top: 50%;
+  width: calc(var(--rx, 150px) * 1.7);
+  height: calc(var(--rx, 150px) * 1.7);
+  max-width: 100%;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(124,92,255,0.28) 0%, rgba(56,189,248,0.12) 40%, transparent 68%);
+  filter: blur(26px);
+  animation: coreBreath 6s ease-in-out infinite;
+  pointer-events: none;
+}
+@keyframes coreBreath {
+  0%, 100% { opacity: 0.55; transform: translate(-50%, -50%) scale(0.92); }
+  50%      { opacity: 1;    transform: translate(-50%, -50%) scale(1.1); }
+}
 
 .orbit-ring {
   position: absolute; left: 50%; top: 50%;
   border-radius: 50%; border: 1px dashed rgba(124,92,255,0.25);
   transform: translate(-50%, -50%);
   pointer-events: none;
+  animation: ringSpin linear infinite, ringGlow 5s ease-in-out infinite;
 }
-.ring-0 { width: 360px; height: 200px; border-color: rgba(124,92,255,0.35); }
-.ring-1 { width: 520px; height: 290px; border-color: rgba(56,189,248,0.3); }
-.ring-2 { width: 680px; height: 380px; border-color: rgba(255,255,255,0.18); }
+/* Sized in JS to match the actual orbit ellipses (--rx / --ry). */
+.ring-0 {
+  width: calc(var(--rx, 150px) * 2 * 0.55);
+  height: calc(var(--ry, 90px) * 2 * 0.55);
+  border-color: rgba(124,92,255,0.45);
+  animation-duration: 26s, 5s; animation-direction: normal, normal;
+}
+.ring-1 {
+  width: calc(var(--rx, 150px) * 2 * 0.775);
+  height: calc(var(--ry, 90px) * 2 * 0.775);
+  border-color: rgba(56,189,248,0.4);
+  animation-duration: 38s, 6s; animation-direction: reverse, normal;
+  animation-delay: 0s, -1.6s;
+}
+.ring-2 {
+  width: calc(var(--rx, 150px) * 2);
+  height: calc(var(--ry, 90px) * 2);
+  border-color: rgba(255,255,255,0.22);
+  animation-duration: 52s, 7s; animation-direction: normal, normal;
+  animation-delay: 0s, -3.2s;
+}
+@keyframes ringSpin {
+  to { transform: translate(-50%, -50%) rotate(360deg); }
+}
+@keyframes ringGlow {
+  0%, 100% { opacity: 0.5; }
+  50%      { opacity: 1; }
+}
 
 .orbit-center {
   position: absolute; left: 50%; top: 50%;
@@ -38,31 +88,116 @@
   padding: 1rem 1.4rem; text-align: center;
   z-index: 20;
   box-shadow: var(--shadow-glow);
+  animation: centerFloat 5s ease-in-out infinite;
+}
+@keyframes centerFloat {
+  0%, 100% { transform: translate(-50%, -50%) translateY(-4px); }
+  50%      { transform: translate(-50%, -50%) translateY(4px); }
+}
+
+/* Expanding ping emitted from the core */
+.orbit-center-ping {
+  position: absolute; left: 50%; top: 50%;
+  width: 100%; height: 100%;
+  border-radius: inherit;
+  border: 1px solid rgba(124,92,255,0.6);
+  transform: translate(-50%, -50%);
+  animation: centerPing 3.2s cubic-bezier(0.22, 1, 0.36, 1) infinite;
+  pointer-events: none;
+}
+@keyframes centerPing {
+  0%   { opacity: 0.8; transform: translate(-50%, -50%) scale(1); }
+  100% { opacity: 0;   transform: translate(-50%, -50%) scale(2.1); }
 }
 
 .orbit-card {
   position: absolute; left: 0; top: 0;
-  padding: 0.5rem 0.9rem; border-radius: 0.7rem;
-  font-size: 0.8rem; font-weight: 600;
-  display: flex; align-items: center; gap: 0.4rem;
+  padding: 0.6rem 1rem; border-radius: 0.85rem;
+  font-size: 0.875rem; font-weight: 700;
+  letter-spacing: -0.01em;
+  display: flex; align-items: center; gap: 0.55rem;
   white-space: nowrap;
-  will-change: transform;
-  transition: box-shadow 0.3s, border-color 0.3s;
-}
-.orbit-card.is-hover {
-  border-color: rgba(124,92,255,0.7);
-  box-shadow: 0 0 30px -5px rgba(124,92,255,0.6);
+  overflow: hidden;
+  will-change: transform, opacity;
+  border-color: color-mix(in srgb, var(--tech) 35%, transparent);
+  box-shadow:
+    0 10px 30px -12px rgba(0,0,0,0.9),
+    inset 0 1px 0 rgba(255,255,255,0.07);
+  transition: box-shadow 0.35s, border-color 0.35s, opacity 0.35s, filter 0.35s;
 }
 
-.orbit-dot {
-  width: 6px; height: 6px; border-radius: 50%;
-  box-shadow: 0 0 8px currentColor;
+/* Per-tech colored badge */
+.orbit-badge {
+  display: grid; place-items: center;
+  width: 22px; height: 22px; flex-shrink: 0;
+  border-radius: 6px;
+  font-size: 0.65rem; font-weight: 800;
+  color: #fff;
+  background: linear-gradient(135deg, var(--tech), color-mix(in srgb, var(--tech) 55%, #05060f));
+  box-shadow: 0 0 12px -2px var(--tech);
+  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
 }
+
+.orbit-label {
+  background: linear-gradient(180deg, #ffffff, #c9cde8);
+  -webkit-background-clip: text; background-clip: text;
+  color: transparent;
+  text-shadow: 0 0 18px rgba(255,255,255,0.12);
+}
+
+/* Sheen that sweeps across on hover */
+.orbit-sheen {
+  position: absolute; inset: 0;
+  background: linear-gradient(105deg, transparent 30%, rgba(255,255,255,0.16) 48%, transparent 66%);
+  transform: translateX(-120%);
+  pointer-events: none;
+}
+
+.orbit-card.is-hover {
+  border-color: var(--tech);
+  box-shadow:
+    0 0 34px -4px color-mix(in srgb, var(--tech) 75%, transparent),
+    0 0 90px -18px var(--tech),
+    inset 0 1px 0 rgba(255,255,255,0.14);
+}
+.orbit-card.is-hover .orbit-badge { transform: rotate(-8deg) scale(1.15); }
+.orbit-card.is-hover .orbit-label {
+  background: linear-gradient(180deg, #fff, #fff);
+  -webkit-background-clip: text; background-clip: text;
+}
+.orbit-card.is-hover .orbit-sheen { animation: sheen 0.85s ease-out; }
+@keyframes sheen { to { transform: translateX(120%); } }
+
+/* Non-hovered cards recede — opacity/filter are set inline per frame in TS,
+   so no dimming rule lives here; inline styles would win regardless. */
 
 .orbit-line {
-  position: absolute; left: 0; top: 0; height: 1.5px;
+  position: absolute; left: 0; top: 0; height: 2px;
   transform-origin: left center;
-  background: linear-gradient(90deg, rgba(124,92,255,0.9), rgba(56,189,248,0.2));
+  background: linear-gradient(90deg, rgba(124,92,255,0.95), color-mix(in srgb, var(--line-tech, #38bdf8) 60%, transparent));
   opacity: 0; transition: opacity 0.3s;
   pointer-events: none;
+  box-shadow: 0 0 14px rgba(124,92,255,0.7);
+  border-radius: 999px;
+}
+
+/* Energy packet travelling out along the connector */
+.orbit-pulse {
+  position: absolute; top: 50%; left: 0;
+  width: 7px; height: 7px; border-radius: 50%;
+  margin-top: -3.5px;
+  background: #fff;
+  box-shadow: 0 0 12px 3px rgba(124,92,255,0.9);
+  animation: pulseTravel 1.1s linear infinite;
+}
+@keyframes pulseTravel {
+  0%   { left: 0%;   opacity: 0; }
+  15%  { opacity: 1; }
+  85%  { opacity: 1; }
+  100% { left: 100%; opacity: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .orbit-core-glow, .orbit-ring, .orbit-center,
+  .orbit-center-ping, .orbit-pulse { animation: none !important; }
 }
