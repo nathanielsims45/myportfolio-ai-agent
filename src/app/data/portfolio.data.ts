@@ -13,9 +13,15 @@ export interface ProjectItem {
   title: string;
   category: string;
   description: string;
+  /** Longer write-up shown on the detail view. */
+  detail: string;
+  /** What I specifically built on the frontend. */
+  highlights: string[];
   tech: string[];
   accent: string;
   image: string;
+  /** Every real screenshot for this product; index 0 doubles as the card thumbnail. */
+  gallery: string[];
   repo: string;
 }
 
@@ -119,19 +125,17 @@ export const PROJECTS: ProjectItem[] = [
     category: 'Casino',
     description:
       'Full casino lobby frontend — slots, live tables, tournaments, and jackpot promos in one dense but readable Angular layout that holds up on mobile.',
+    detail:
+      'A complete casino lobby built as a component-driven Angular app: a hero promo carousel, category-filtered game rails, a jackpot banner, and a dense live-casino grid — all sharing one token-driven theme so new game categories drop in without new CSS.',
+    highlights: [
+      'Category-filterable game grid (slots, live tables, jackpots) with skeleton loading',
+      'Promo carousel and tournament banners built as reusable, data-driven components',
+      'Dense UI kept scannable on mobile with a strict spacing and type scale',
+    ],
     tech: ['Angular', 'RxJS', 'SCSS', 'Lazy Loading'],
     accent: '#22c55e',
     image: 'assets/casino/7zone-casino-thumb.jpg',
-    repo: 'https://github.com/nathanielsims45',
-  },
-  {
-    title: '7Zone Game Lobby',
-    category: 'Casino',
-    description:
-      'Filterable game grid with promo banners, tournament tiles, and a fast-games rail — built with skeleton loading and virtual scroll for hundreds of tiles.',
-    tech: ['Angular', 'Signals', 'Tailwind', 'Skeleton States'],
-    accent: '#16a34a',
-    image: 'assets/casino/7zone-casino-lobby.jpg',
+    gallery: ['assets/casino/7zone-casino-thumb.jpg', 'assets/casino/7zone-casino-lobby.jpg'],
     repo: 'https://github.com/nathanielsims45',
   },
   {
@@ -139,19 +143,17 @@ export const PROJECTS: ProjectItem[] = [
     category: 'Crypto Casino',
     description:
       'Crypto-native casino dashboard with a BTC balance, live game categories, and a dark theme tuned for long sessions without eye strain.',
+    detail:
+      'A crypto-first casino product: wallet balance in the header, a dark theme designed for long play sessions, and an editorial blog section reusing the same design tokens so the whole product — game screens and content pages alike — feels like one system.',
+    highlights: [
+      'Wallet balance and deposit flow built into the primary navigation',
+      'Dark theme tuned for extended sessions, not just aesthetics',
+      'Blog/content section reusing the product\'s core design tokens and type scale',
+    ],
     tech: ['Angular', 'TypeScript', 'Web3', 'SCSS'],
     accent: '#2dd4bf',
     image: 'assets/casino/silverskystake-thumb.jpg',
-    repo: 'https://github.com/nathanielsims45',
-  },
-  {
-    title: 'SilverSkyStake Blog',
-    category: 'Content UI',
-    description:
-      'Editorial section inside the same product — category filters, card grids, and consistent typography reusing the core design system.',
-    tech: ['Angular', 'SSR', 'SCSS', 'Design Tokens'],
-    accent: '#38bdf8',
-    image: 'assets/casino/silverskystake-blog.jpg',
+    gallery: ['assets/casino/silverskystake-thumb.jpg', 'assets/casino/silverskystake-blog.jpg'],
     repo: 'https://github.com/nathanielsims45',
   },
   {
@@ -159,19 +161,17 @@ export const PROJECTS: ProjectItem[] = [
     category: 'Web3 / NFT',
     description:
       'NFT collection landing page with wallet connect, lore-driven world sections, and a live collection grid — built to feel cinematic without hurting load time.',
+    detail:
+      'An NFT collection site built to feel cinematic: a hero with wallet-connect, four illustrated "world" sections, a live collection grid, and a weekly community feature with a video story panel, a character voting grid, and an FAQ accordion — all state-driven Angular components over one design system.',
+    highlights: [
+      'Wallet-connect flow and collection grid built as reusable Angular components',
+      'Weekly "story vote" feature: video panel, voting grid, and FAQ accordion',
+      'Heavy illustrated content kept fast with lazy-loaded, budgeted imagery',
+    ],
     tech: ['Angular', 'TypeScript', 'Web3', 'GSAP'],
     accent: '#ef4444',
     image: 'assets/casino/runeverse-hero.jpg',
-    repo: 'https://github.com/nathanielsims45',
-  },
-  {
-    title: 'Runeverse Story Vote',
-    category: 'Web3 / NFT',
-    description:
-      'Weekly community feature: video story panel, character voting grid, and an FAQ accordion — all state-driven Angular components over the same design tokens.',
-    tech: ['Angular', 'Signals', 'SCSS', 'Accessibility'],
-    accent: '#f97316',
-    image: 'assets/casino/runeverse-vote.jpg',
+    gallery: ['assets/casino/runeverse-hero.jpg', 'assets/casino/runeverse-worlds.jpg', 'assets/casino/runeverse-vote.jpg'],
     repo: 'https://github.com/nathanielsims45',
   },
   {
@@ -179,9 +179,17 @@ export const PROJECTS: ProjectItem[] = [
     category: 'Web3',
     description:
       'NFT buy/sell marketplace frontend — trending collections, bidding cards, top-seller rail, and reviews, built as a reusable Angular template.',
+    detail:
+      'A full NFT marketplace template: trending-collection cards with live bidding state, a horizontally-scrolling top-seller rail, a popular-collection grid, and a reviews section — built as a reusable Angular component set rather than one-off page markup.',
+    highlights: [
+      'Bidding cards with live price state and "Place a Bid" actions',
+      'Horizontal-scroll top-seller and collection rails as reusable carousel components',
+      'Consistent card system reused across trending, popular, and collection views',
+    ],
     tech: ['Angular', 'RxJS', 'Tailwind', 'Carousel'],
     accent: '#a855f7',
     image: 'assets/casino/nftui-hero.jpg',
+    gallery: ['assets/casino/nftui-hero.jpg', 'assets/casino/nftui-collections.jpg'],
     repo: 'https://github.com/nathanielsims45',
   },
   {
@@ -189,9 +197,17 @@ export const PROJECTS: ProjectItem[] = [
     category: 'Esports',
     description:
       'Esports tournament platform — creation hub, rewards system, performance tracker, and a live leaderboard table built for fast scanning on any device.',
+    detail:
+      'An esports tournament platform frontend: a tournament creation hub, a rewards system, an in-app performance tracker with live stats, and a sortable leaderboard table — designed so competitive players can scan rank, win rate, and prize data fast on any device.',
+    highlights: [
+      'Sortable leaderboard table tuned for fast scanning at a glance',
+      'Performance tracker combining stat cards with a live progress ring',
+      'Tournament creation hub and rewards system as standalone feature modules',
+    ],
     tech: ['Angular', 'RxJS', 'ApexCharts', 'Tailwind'],
     accent: '#818cf8',
     image: 'assets/casino/tournaments-hero.jpg',
+    gallery: ['assets/casino/tournaments-hero.jpg', 'assets/casino/tournaments-features.jpg'],
     repo: 'https://github.com/nathanielsims45',
   },
   {
@@ -199,9 +215,17 @@ export const PROJECTS: ProjectItem[] = [
     category: 'Casino',
     description:
       'Sportsbook + casino hybrid frontend with live jackpot ticker, game-show rail, and a payment-method strip — dense UI kept scannable with a strict visual hierarchy.',
+    detail:
+      'A sportsbook-and-casino hybrid: live sports odds sit next to slot and live-dealer rails behind one navigation, with a running jackpot ticker, a game-show carousel, and a payment-method strip — an intentionally dense UI kept legible with a strict visual hierarchy and consistent card sizing.',
+    highlights: [
+      'Combined sportsbook + casino navigation without splitting the product in two',
+      'Live jackpot ticker and game-show rail as independently updating components',
+      'Payment-method strip and multi-language toggle built into the core shell',
+    ],
     tech: ['Angular', 'RxJS', 'SCSS', 'i18n'],
     accent: '#fb923c',
     image: 'assets/casino/maxibet-hero.jpg',
+    gallery: ['assets/casino/maxibet-hero.jpg', 'assets/casino/maxibet-games.jpg'],
     repo: 'https://github.com/nathanielsims45',
   },
 ];

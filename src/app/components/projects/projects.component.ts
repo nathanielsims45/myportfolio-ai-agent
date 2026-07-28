@@ -1,20 +1,26 @@
-import { Component } from '@angular/core';
-import { PROJECTS } from '../../data/portfolio.data';
+import { Component, signal } from '@angular/core';
+import { PROJECTS, ProjectItem } from '../../data/portfolio.data';
 import { SectionHeaderComponent } from '../shared/section-header.component';
 import { TiltDirective } from '../shared/tilt.directive';
+import { ProjectDetailComponent } from './project-detail.component';
 
 @Component({
   selector: 'app-projects',
-  imports: [SectionHeaderComponent, TiltDirective],
+  imports: [SectionHeaderComponent, TiltDirective, ProjectDetailComponent],
   template: `
     <section id="projects" class="section-pad relative">
       <div class="container-x">
         <app-section-header eyebrow="Projects" title="Selected work"
-          subtitle="Enterprise platforms across healthcare, FinTech, and AI." />
+          subtitle="Real frontend builds across crypto, casino, and Web3 products. Click any project for the full story." />
 
         <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           @for (project of projects; track project.title) {
-            <article appTilt class="reveal glass glass-hover rounded-2xl overflow-hidden group tilt-card">
+            <article appTilt
+              class="reveal glass glass-hover rounded-2xl overflow-hidden group tilt-card cursor-pointer"
+              (click)="selected.set(project)"
+              (keydown.enter)="selected.set(project)"
+              tabindex="0" role="button" [attr.aria-label]="'Open ' + project.title + ' details'"
+            >
               <div class="relative h-48 overflow-hidden">
                 <img [src]="project.image" [alt]="project.title" loading="lazy"
                   class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
@@ -23,6 +29,12 @@ import { TiltDirective } from '../shared/tilt.directive';
                 <div class="absolute bottom-3 left-3 px-2.5 py-1 rounded-full text-[10px] font-mono"
                   style="background:rgba(5,6,15,0.7);border:1px solid rgba(255,255,255,0.15);backdrop-filter:blur(8px)">
                   {{ project.category }}
+                </div>
+                <div class="view-hint absolute inset-0 grid place-items-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <span class="px-4 py-2 rounded-full text-xs font-semibold text-white"
+                    style="background:rgba(5,6,15,0.65);border:1px solid rgba(255,255,255,0.2);backdrop-filter:blur(6px)">
+                    View project →
+                  </span>
                 </div>
               </div>
               <div class="p-5">
@@ -34,28 +46,21 @@ import { TiltDirective } from '../shared/tilt.directive';
                       style="background:rgba(124,92,255,0.12);border:1px solid rgba(124,92,255,0.25);color:#9b86ff">{{ t }}</span>
                   }
                 </div>
-                <div class="mt-5 pt-4 border-t border-[rgba(124,92,255,0.14)]">
-                  <a [href]="project.repo" target="_blank" rel="noopener noreferrer"
-                    class="repo-link inline-flex items-center gap-2 text-sm text-text-muted hover:text-text transition-colors">
-                    <svg viewBox="0 0 16 16" width="15" height="15" fill="currentColor" aria-hidden="true">
-                      <path d="M8 0C3.58 0 0 3.58 0 8a8 8 0 0 0 5.47 7.59c.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82a7.4 7.4 0 0 1 2-.27c.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/>
-                    </svg>
-                    View on GitHub
-                    <span class="arrow transition-transform duration-300">→</span>
-                  </a>
-                </div>
               </div>
             </article>
           }
         </div>
       </div>
     </section>
+
+    <app-project-detail [project]="selected()" (close)="selected.set(null)" />
   `,
   styles: [`
     .tilt-card { transform-style: preserve-3d; }
-    .repo-link:hover .arrow { transform: translateX(3px); }
+    .view-hint { pointer-events: none; }
   `],
 })
 export class ProjectsComponent {
   readonly projects = PROJECTS;
+  readonly selected = signal<ProjectItem | null>(null);
 }
