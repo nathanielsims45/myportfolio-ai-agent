@@ -42,16 +42,19 @@ export class TechStackComponent implements AfterViewInit, OnDestroy {
   private slowdown = 1;
 
   constructor() {
-    const perRing = [4, 4, 4];
-    let idx = 0;
-    for (let r = 0; r < 3; r++) {
+    // Spread the cards evenly around whichever ring they belong to, counting
+    // the real membership instead of assuming a fixed 4/4/4 split.
+    const counts = new Map<number, number>();
+    for (const c of this.cards) counts.set(c.ring, (counts.get(c.ring) ?? 0) + 1);
+    const seen = new Map<number, number>();
+    this.cards.forEach((c, idx) => {
+      const n = counts.get(c.ring) ?? 1;
+      const k = seen.get(c.ring) ?? 0;
+      seen.set(c.ring, k + 1);
       // Offset each ring so cards don't line up in spokes across rings.
-      const phase = (r / 3) * ((Math.PI * 2) / perRing[r]);
-      for (let i = 0; i < perRing[r]; i++) {
-        this.angles[idx] = (i / perRing[r]) * Math.PI * 2 + phase;
-        idx++;
-      }
-    }
+      const phase = (c.ring / 3) * ((Math.PI * 2) / n);
+      this.angles[idx] = (k / n) * Math.PI * 2 + phase;
+    });
   }
 
   ngAfterViewInit(): void {
@@ -83,6 +86,27 @@ export class TechStackComponent implements AfterViewInit, OnDestroy {
         this.autoIndex = null;
       }, AUTO_HOLD_MS);
     }, AUTO_EVERY_MS);
+  }
+
+  private wasPortrait: boolean | null = null;
+  /** Even angular spacing for whichever ring split is active. */
+  private spreadAngles(portrait: boolean) {
+    const rings = this.radii.length;
+    if (portrait) {
+      // Single shared path: space all cards equally around one ellipse.
+      const n = this.cards.length;
+      this.cards.forEach((_, i) => { this.angles[i] = (i / n) * Math.PI * 2; });
+      return;
+    }
+    const counts = new Map<number, number>();
+    for (const c of this.cards) counts.set(c.ring, (counts.get(c.ring) ?? 0) + 1);
+    const seen = new Map<number, number>();
+    this.cards.forEach((c, i) => {
+      const n = counts.get(c.ring) ?? 1;
+      const k = seen.get(c.ring) ?? 0;
+      seen.set(c.ring, k + 1);
+      this.angles[i] = (k / n) * Math.PI * 2 + (c.ring / rings) * ((Math.PI * 2) / n);
+    });
   }
 
   private cardW = 0;
@@ -119,12 +143,27 @@ export class TechStackComponent implements AfterViewInit, OnDestroy {
       const maxCardW = this.cardW || 150;
       const maxCardH = this.cardH || CARD_H;
 
-      // Narrow viewports cannot fit a full-size card on both sides of the
-      // orbit. Shrink cards enough that a real orbit still exists; the floor
-      // is low so the ring never collapses onto the center card.
-      const wantRx = Math.max(96, w * 0.3);
-      const fitScale = Math.min(1, (w / 2 - wantRx - 6) / ((maxCardW * HOVER_SCALE) / 2));
-      const cardScale = Math.max(0.5, fitScale);
+      // Orient the orbit along whichever axis actually has room: wide on
+      // desktop, tall on phones. A portrait box with a horizontal ellipse
+      // squeezes every card onto the centre, which is unreadable.
+      const portrait = h > w;
+      if (portrait !== this.wasPortrait) {
+        this.wasPortrait = portrait;
+        this.spreadAngles(portrait);
+      }
+      // Portrait orbits have a narrow waist, so start the inner ring further
+      // out to keep cards clear of the centre card.
+      const INNER_F = portrait ? 0.58 : 0.55;
+      // Tilt makes narrow ellipses cross; flatten it out in portrait.
+      const tiltScale = portrait ? 0.25 : 1;
+
+      // Reserve space for a card on both sides of the *long* axis.
+      const longSide = portrait ? h : w;
+      const wantR = Math.max(96, longSide * 0.3);
+      const across = portrait
+        ? (w / 2 - 6) / ((maxCardW * HOVER_SCALE) / 2) // cards still limited by width
+        : (w / 2 - wantR - 6) / ((maxCardW * HOVER_SCALE) / 2);
+      const cardScale = Math.max(0.5, Math.min(1, across));
 
       const padX = (maxCardW * cardScale * HOVER_SCALE) / 2 + 8;
       const padY = (maxCardH * cardScale * HOVER_SCALE) / 2 + BOB_PX + 8;
@@ -133,25 +172,60 @@ export class TechStackComponent implements AfterViewInit, OnDestroy {
       const availX = Math.max(40, w / 2 - padX);
       const availY = Math.max(40, h / 2 - padY);
       const maxEcc = Math.max(...this.ringEcc) / 0.62;
+      // FLAT is the squash applied to the short axis of the ellipse.
+      const FLAT = 0.62;
+
       let rxMax = availX;
-      let ryMax = Math.min(availY, rxMax * 0.62);
-      for (const [ri, tilt] of this.ringTilt.entries()) {
-        const f = this.radii.length === 1 ? 1 : 0.55 + (ri / (this.radii.length - 1)) * 0.45;
+      let ryMax = availY;
+      for (const [ri, rawTilt] of this.ringTilt.entries()) {
+        const tilt = rawTilt * tiltScale;
+        const f = this.radii.length === 1 ? 1 : INNER_F + (ri / (this.radii.length - 1)) * (1 - INNER_F);
         const e = this.ringEcc[ri] / 0.62;
         const c = Math.abs(Math.cos(tilt));
         const si = Math.abs(Math.sin(tilt));
-        // half-extents of this tilted ellipse, per axis
-        const exX = f * (c + 0.62 * e * si);
-        const exY = f * (si + 0.62 * e * c);
+        // Half-extents of this tilted ellipse per axis. The eccentricity and
+        // the flattening apply to the short axis, whichever one that is.
+        const exX = portrait ? f * (FLAT * e * c + si) : f * (c + FLAT * e * si);
+        const exY = portrait ? f * (FLAT * e * si + c) : f * (si + FLAT * e * c);
         rxMax = Math.min(rxMax, availX / exX);
-        ryMax = Math.min(ryMax, (availY / exY) * 0.62);
+        ryMax = Math.min(ryMax, availY / exY);
       }
-      ryMax = Math.min(ryMax, rxMax * 0.62, availY / maxEcc);
+      if (portrait) {
+        // Tall ellipse: width is the squashed axis.
+        ryMax = Math.min(ryMax, availY / maxEcc);
+        rxMax = Math.min(rxMax, ryMax * FLAT);
+      } else {
+        // Wide ellipse: height is the squashed axis.
+        rxMax = Math.min(rxMax, availX / maxEcc);
+        ryMax = Math.min(ryMax, rxMax * FLAT);
+      }
       const rings = this.radii.length;
 
       // Share the computed ellipse with CSS so the rings track the real orbits.
       host.style.setProperty('--rx', `${rxMax}px`);
       host.style.setProperty('--ry', `${ryMax}px`);
+
+      // Size each ring from the same numbers that place the cards, so the
+      // drawn ellipse always matches the path travelled.
+      const ringEls = host.querySelectorAll<HTMLElement>('.orbit-ring');
+      ringEls.forEach((el, ri) => {
+        if (portrait) {
+          // Cards all ride one ellipse here, so draw a single matching path
+          // and use the other two as subtle concentric echoes inside it.
+          const echo = [1, 0.66, 0.36][ri];
+          el.style.width = `${2 * rxMax * echo}px`;
+          el.style.height = `${2 * ryMax * echo}px`;
+          el.style.setProperty('--tilt', '0rad');
+          el.style.opacity = ri === 0 ? '' : '0.35';
+          return;
+        }
+        el.style.opacity = '';
+        const f = rings === 1 ? 1 : INNER_F + (ri / (rings - 1)) * (1 - INNER_F);
+        const e = this.ringEcc[ri] / 0.62;
+        el.style.width = `${2 * rxMax * f}px`;
+        el.style.height = `${2 * ryMax * f * e}px`;
+        el.style.setProperty('--tilt', `${this.ringTilt[ri] * tiltScale}rad`);
+      });
 
       const target = this.hovered() !== null ? 0.15 : 1;
       this.slowdown += (target - this.slowdown) * 0.08;
@@ -159,24 +233,41 @@ export class TechStackComponent implements AfterViewInit, OnDestroy {
       const t = (now - this.start) / 1000;
 
       cards.forEach((el, i) => {
-        const ring = this.cards[i].ring;
+        // Portrait has a narrow waist, so spread cards across all three rings
+        // evenly (4/4/4) instead of the desktop 2/4/6 weighting.
+        const ring = portrait ? i % rings : this.cards[i].ring;
 
         // Sweep faster near the "front" of the orbit and slower at the back,
         // like an eccentric orbit, so motion never reads as a uniform spin.
-        const ease = 1 + 0.55 * Math.sin(this.angles[i] + i * 0.7);
-        this.angles[i] += this.speeds[ring] * 16 * this.slowdown * ease;
+        // Portrait keeps a constant shared speed so the even spacing that
+        // prevents collisions is never disturbed.
+        const ease = portrait ? 1 : 1 + 0.55 * Math.sin(this.angles[i] + i * 0.7);
+        const spd = portrait ? 0.0007 : this.speeds[ring];
+        this.angles[i] += spd * 16 * this.slowdown * ease;
         const a = this.angles[i];
 
         // Innermost ring sits at 55% of the outermost, scaling out evenly.
-        const f = rings === 1 ? 1 : 0.55 + (ring / (rings - 1)) * 0.45;
+        const f = rings === 1 ? 1 : INNER_F + (ring / (rings - 1)) * (1 - INNER_F);
 
-        // Eccentric, tilted ellipse per ring — not a plain circle.
-        const ex = Math.cos(a) * rxMax * f;
-        const ey = Math.sin(a) * ryMax * f * (this.ringEcc[ring] / 0.62);
-        const tilt = this.ringTilt[ring];
+        // Eccentric, tilted ellipse per ring — not a plain circle. The
+        // eccentricity rides the short axis, which flips with orientation.
+        const e = this.ringEcc[ring] / 0.62;
+        const ex = Math.cos(a) * rxMax * f * (portrait ? e : 1);
+        const ey = Math.sin(a) * ryMax * f * (portrait ? 1 : e);
+        const tilt = this.ringTilt[ring] * tiltScale;
         const bob = Math.sin(t * 1.4 + i * 0.9) * BOB_PX;
-        const x = cx + ex * Math.cos(tilt) - ey * Math.sin(tilt);
-        const y = cy + ex * Math.sin(tilt) + ey * Math.cos(tilt) + bob;
+        let x = cx + ex * Math.cos(tilt) - ey * Math.sin(tilt);
+        let y = cy + ex * Math.sin(tilt) + ey * Math.cos(tilt) + bob;
+
+        if (portrait) {
+          // One shared vertical ellipse: with only ~342px of width there is no
+          // room for concentric rings, so every card rides the same path.
+          // Equal angles bunch up at the top and bottom of a tall ellipse, so
+          // warp the angle toward equal arc-length spacing.
+          const warped = a - 0.42 * Math.sin(2 * a);
+          x = cx + Math.cos(warped) * rxMax;
+          y = cy + Math.sin(warped) * ryMax + bob;
+        }
 
         // depth: sin(a) runs -1 (far/back) → 1 (near/front)
         const depth = (Math.sin(a) + 1) / 2;
@@ -204,12 +295,13 @@ export class TechStackComponent implements AfterViewInit, OnDestroy {
       if (line) {
         if (this.hovered() !== null) {
           const i = this.hovered()!;
-          const ring = this.cards[i].ring;
-          const f = rings === 1 ? 1 : 0.55 + (ring / (rings - 1)) * 0.45;
+          const ring = portrait ? i % rings : this.cards[i].ring;
+          const f = rings === 1 ? 1 : INNER_F + (ring / (rings - 1)) * (1 - INNER_F);
           const a = this.angles[i];
-          const ex = Math.cos(a) * rxMax * f;
-          const ey = Math.sin(a) * ryMax * f * (this.ringEcc[ring] / 0.62);
-          const tilt = this.ringTilt[ring];
+          const e = this.ringEcc[ring] / 0.62;
+          const ex = Math.cos(a) * rxMax * f * (portrait ? e : 1);
+          const ey = Math.sin(a) * ryMax * f * (portrait ? 1 : e);
+          const tilt = this.ringTilt[ring] * tiltScale;
           const bob = Math.sin(t * 1.4 + i * 0.9) * BOB_PX;
           const x = cx + ex * Math.cos(tilt) - ey * Math.sin(tilt);
           const y = cy + ex * Math.sin(tilt) + ey * Math.cos(tilt) + bob;
