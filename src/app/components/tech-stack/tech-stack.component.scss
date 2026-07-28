@@ -62,7 +62,7 @@
 }
 .ring-2 {
   width: calc(var(--rx, 150px) * 2);
-  height: min(calc(var(--ry, 90px) * 2.52), calc(var(--rx, 150px) * 1.4));
+  height: calc(var(--ry, 90px) * 2.52);
   transform: translate(-50%, -50%) rotate(-5.2deg);
   border-color: rgba(255,255,255,0.22);
   animation-duration: 7s;

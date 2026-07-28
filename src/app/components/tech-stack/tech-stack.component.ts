@@ -126,8 +126,6 @@ export class TechStackComponent implements AfterViewInit, OnDestroy {
 
       const padX = (maxCardW * cardScale * HOVER_SCALE) / 2 + 8;
       const padY = (maxCardH * cardScale * HOVER_SCALE) / 2 + BOB_PX + 8;
-      // Tilting the orbits rotates points outward, so shrink the usable
-      // radius by the largest tilt to keep every card inside the box.
       // Tilting and per-ring eccentricity both push points outward, so solve
       // for the largest radii where every ring still fits the padded box.
       const availX = Math.max(40, w / 2 - padX);
