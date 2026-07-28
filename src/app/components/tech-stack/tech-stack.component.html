@@ -1,0 +1,43 @@
+<section id="stack" class="section-pad relative">
+  <div class="container-x">
+    <app-section-header eyebrow="Tech Stack" title="The technologies I build with"
+      subtitle="Twelve core technologies across frontend, cloud, and AI. Hover or tap any card to focus it." />
+
+    <!-- No `reveal` on the orbit wrapper: it applies a transform, which would
+         become the containing block for the absolutely-positioned cards and
+         throw off the coordinates computed in the component. -->
+    <div class="relative orbit-fade h-[420px] sm:h-[520px] lg:h-[600px] xl:h-[660px]">
+      <div #orbitHost class="absolute inset-0 orbit-host">
+        <div class="orbit-core-glow"></div>
+        <div class="orbit-line">
+          <span class="orbit-pulse"></span>
+        </div>
+        <div class="orbit-ring ring-0"></div>
+        <div class="orbit-ring ring-1"></div>
+        <div class="orbit-ring ring-2"></div>
+
+        <div class="orbit-center glass gradient-border">
+          <div class="orbit-center-ping"></div>
+          <div class="eyebrow text-[0.6rem] sm:text-xs">Angular Expert</div>
+          <div class="mt-1 text-base sm:text-lg font-bold text-text tracking-tight">{{ profile.name }}</div>
+          <div class="mt-1 text-[10px] sm:text-xs font-mono text-text-muted">12 core technologies</div>
+        </div>
+
+        @for (card of cards; track card.label; let i = $index) {
+          <div
+            class="orbit-card glass"
+            (mouseenter)="onEnter(i)"
+            (mouseleave)="onLeave()"
+            (click)="onTap(i)"
+            [class.is-hover]="hovered() === i"
+            [style.--tech]="card.color"
+          >
+            <span class="orbit-badge">{{ card.icon }}</span>
+            <span class="orbit-label">{{ card.label }}</span>
+            <span class="orbit-sheen"></span>
+          </div>
+        }
+      </div>
+    </div>
+  </div>
+</section>

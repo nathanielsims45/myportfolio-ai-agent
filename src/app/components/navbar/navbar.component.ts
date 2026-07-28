@@ -75,6 +75,7 @@ export class NavbarComponent {
   menuOpen = signal(false);
   items: NavItem[] = [
     { label: 'Home', href: '#home' },
+    { label: 'Stack', href: '#stack' },
     { label: 'About', href: '#about' },
     { label: 'Experience', href: '#experience' },
     { label: 'Skills', href: '#skills' },

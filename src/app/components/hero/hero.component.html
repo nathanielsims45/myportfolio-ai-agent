@@ -1,7 +1,7 @@
-<section id="home" class="relative min-h-screen flex items-center overflow-hidden">
-  <div class="container-x w-full px-6 grid lg:grid-cols-2 gap-10 items-center relative z-10">
+<section id="home" class="relative min-h-screen flex items-center overflow-hidden pt-24 pb-16 lg:pt-16 lg:pb-0">
+  <div class="container-x w-full px-6 relative z-10">
     <!-- Left: hero copy -->
-    <div class="reveal max-w-xl">
+    <div class="reveal max-w-3xl">
       <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full glass text-xs font-mono mb-6">
         <span class="w-2 h-2 rounded-full bg-success animate-pulse"></span>
         {{ profile.availability }} · {{ profile.rate }}
@@ -29,38 +29,6 @@
       </div>
     </div>
 
-    <!-- Right: orbit -->
-    <div class="reveal relative h-[520px] sm:h-[620px]">
-      <div #orbitHost class="absolute inset-0 orbit-host">
-        <div class="orbit-core-glow"></div>
-        <div class="orbit-line">
-          <span class="orbit-pulse"></span>
-        </div>
-        <div class="orbit-ring ring-0"></div>
-        <div class="orbit-ring ring-1"></div>
-        <div class="orbit-ring ring-2"></div>
-        <div class="orbit-center glass gradient-border">
-          <div class="orbit-center-ping"></div>
-          <div class="text-xs eyebrow">Angular Expert</div>
-          <div class="mt-1 text-sm font-bold text-text tracking-tight">Nathaniel Sims</div>
-          <div class="mt-1 text-[10px] font-mono text-text-muted">12 core technologies</div>
-        </div>
-        @for (card of cards; track card.label; let i = $index) {
-          <div
-            class="orbit-card glass"
-            (mouseenter)="onEnter(i)"
-            (mouseleave)="onLeave()"
-            [class.is-hover]="hovered() === i"
-            [class.is-dimmed]="hovered() !== null && hovered() !== i"
-            [style.--tech]="card.color"
-          >
-            <span class="orbit-badge">{{ card.icon }}</span>
-            <span class="orbit-label">{{ card.label }}</span>
-            <span class="orbit-sheen"></span>
-          </div>
-        }
-      </div>
-    </div>
   </div>
 
   <div class="absolute bottom-6 inset-x-0 flex justify-center text-text-muted text-xs font-mono z-10">

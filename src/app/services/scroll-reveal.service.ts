@@ -17,11 +17,23 @@ export class ScrollRevealService {
           }
         }
       },
-      { threshold: 0.12, rootMargin: '0px 0px -8% 0px' }
+      // A single 0.12 threshold never fires for elements taller than the
+      // viewport, which left tall panels stuck at opacity 0. Trigger as soon
+      // as any part scrolls in, and keep a fractional threshold for short ones.
+      { threshold: [0, 0.12], rootMargin: '0px 0px -5% 0px' }
     );
     const rootEl = root instanceof ElementRef ? root.nativeElement : root;
     const targets = rootEl.querySelectorAll('.reveal');
-    targets.forEach((t) => this.observer?.observe(t));
+    targets.forEach((t) => {
+      // Anything already spanning the viewport may never produce an
+      // intersection change, so reveal it up front.
+      const r = t.getBoundingClientRect();
+      if (r.top < window.innerHeight && r.bottom > 0) {
+        t.classList.add('in-view');
+        return;
+      }
+      this.observer?.observe(t);
+    });
     this.ready.set(true);
   }
 
