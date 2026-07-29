@@ -11,10 +11,13 @@ export class AgentVoiceService {
 
   private recognition: any = null;
   private voicesReady = false;
+  private audio: HTMLAudioElement | null = null;
+  /** Bumped on every speak()/stopSpeaking() call so a stale async response never plays. */
+  private speakToken = 0;
 
   constructor(private zone: NgZone) {
-    // Chrome loads voices async; the first speak() call can silently no-op
-    // if it fires before the voice list is populated.
+    // Chrome loads voices async; the first fallback speak() call can
+    // silently no-op if it fires before the voice list is populated.
     if (this.ttsSupported) {
       const warm = () => { this.voicesReady = window.speechSynthesis.getVoices().length > 0; };
       warm();
@@ -53,8 +56,39 @@ export class AgentVoiceService {
     this.recognition?.stop();
   }
 
-  speak(text: string): void {
-    if (!this.ttsSupported || !text) return;
+  /** Natural ElevenLabs voice via the server-side proxy, falling back to browser TTS on any failure. */
+  async speak(text: string): Promise<void> {
+    if (!text) return;
+    const token = ++this.speakToken;
+    this.stopSpeaking();
+
+    try {
+      const res = await fetch('/api/agent-speak', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ text }),
+      });
+      if (!res.ok) throw new Error(`agent-speak ${res.status}`);
+      if (token !== this.speakToken) return; // superseded by a newer call
+
+      const blob = await res.blob();
+      if (token !== this.speakToken) return;
+
+      const url = URL.createObjectURL(blob);
+      const audio = new Audio(url);
+      this.audio = audio;
+      audio.onplay = () => this.zone.run(() => this.speaking.set(true));
+      audio.onended = () => this.zone.run(() => { this.speaking.set(false); URL.revokeObjectURL(url); });
+      audio.onerror = () => this.zone.run(() => { this.speaking.set(false); URL.revokeObjectURL(url); });
+      await audio.play();
+    } catch {
+      if (token !== this.speakToken) return;
+      this.speakBrowser(text);
+    }
+  }
+
+  private speakBrowser(text: string): void {
+    if (!this.ttsSupported) return;
     window.speechSynthesis.cancel();
     const utter = new SpeechSynthesisUtterance(text);
     utter.rate = 1.02;
@@ -72,8 +106,12 @@ export class AgentVoiceService {
   }
 
   stopSpeaking(): void {
-    if (!this.ttsSupported) return;
-    window.speechSynthesis.cancel();
+    this.speakToken++;
+    if (this.audio) {
+      this.audio.pause();
+      this.audio = null;
+    }
+    if (this.ttsSupported) window.speechSynthesis.cancel();
     this.speaking.set(false);
   }
 }
