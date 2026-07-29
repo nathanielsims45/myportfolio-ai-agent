@@ -8,3 +8,5 @@ check.mjs
 
 # Local Netlify folder
 .netlify
+.vercel
+.env*

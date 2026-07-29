@@ -1,5 +1,6 @@
 import { Component, AfterViewInit, inject, NgZone } from '@angular/core';
 import { bootstrapApplication } from '@angular/platform-browser';
+import { inject as injectAnalytics } from '@vercel/analytics';
 import { NavbarComponent } from './app/components/navbar/navbar.component';
 import { CinematicBgComponent } from './app/components/cinematic-bg/cinematic-bg.component';
 import { HeroComponent } from './app/components/hero/hero.component';
@@ -57,5 +58,7 @@ export class App implements AfterViewInit {
     });
   }
 }
+
+injectAnalytics();
 
 bootstrapApplication(App);

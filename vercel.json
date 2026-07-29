@@ -1,0 +1,7 @@
+{
+  "buildCommand": "npx ng build",
+  "outputDirectory": "dist/demo/browser",
+  "rewrites": [
+    { "source": "/((?!api/).*)", "destination": "/index.html" }
+  ]
+}
