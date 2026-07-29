@@ -130,22 +130,23 @@ export class AgentWidgetComponent implements AfterViewChecked {
     }
     this.voice.listen((text) => {
       this.draft = text;
-      void this.send();
+      void this.send(true);
     });
   }
 
   onSubmit(e: Event): void {
     e.preventDefault();
-    this.send();
+    this.send(false);
   }
 
-  private async send(): Promise<void> {
+  /** Only speak the reply aloud when the question itself came in by voice. */
+  private async send(viaVoice: boolean): Promise<void> {
     const text = this.draft;
     this.draft = '';
     const before = this.chat.messages().length;
     await this.chat.send(text);
     const after = this.chat.messages();
-    if (after.length > before) {
+    if (viaVoice && after.length > before) {
       const reply = after[after.length - 1];
       if (reply.role === 'assistant') this.voice.speak(reply.content);
     }
