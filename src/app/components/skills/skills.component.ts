@@ -11,7 +11,7 @@ import { TiltDirective } from '../shared/tilt.directive';
     <section id="skills" class="section-pad relative">
       <div class="container-x">
         <app-section-header eyebrow="Skills" title="Skills dashboard"
-          subtitle="Animated proficiency across the Microsoft stack I ship production systems with." />
+          subtitle="Animated proficiency across the AI, cloud, and full stack tools I ship production systems with." />
         <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-5">
           @for (skill of skills; track skill.name) {
             <div appTilt class="reveal skill-card glass glass-hover rounded-2xl overflow-hidden group relative">

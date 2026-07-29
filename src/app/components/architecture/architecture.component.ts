@@ -12,7 +12,7 @@ import { TiltDirective } from '../shared/tilt.directive';
         <!-- Enterprise architecture -->
         <div>
           <app-section-header eyebrow="Process" title="Scope to production flow"
-            subtitle="How requirements and mockups become a maintained Power Apps build." />
+            subtitle="How requirements and mockups become a maintained production build." />
           <div class="reveal glass rounded-3xl p-6 sm:p-8">
             <div class="flex flex-col items-center gap-3">
               @for (node of arch; track node.label; let last = $last) {
@@ -66,7 +66,7 @@ import { TiltDirective } from '../shared/tilt.directive';
         <!-- Code quality -->
         <div>
           <app-section-header eyebrow="Quality" title="Build practices"
-            subtitle="What keeps a Power Platform or .NET build maintainable after handoff." />
+            subtitle="What keeps an AI agent or full stack build maintainable after handoff." />
           <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
             @for (item of codeQuality; track item.label) {
               <div appTilt class="reveal quality-card glass glass-hover rounded-xl p-4 flex items-start gap-3">
@@ -82,8 +82,8 @@ import { TiltDirective } from '../shared/tilt.directive';
 
         <!-- AI solutions -->
         <div id="ai">
-          <app-section-header eyebrow="Capabilities" title="What I build with the Microsoft stack"
-            subtitle="Power Platform, Azure, and .NET, end to end." />
+          <app-section-header eyebrow="Capabilities" title="What I build with the AI & cloud stack"
+            subtitle="AI agents, Azure, React/Next.js, and .NET, end to end." />
           <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
             @for (ai of aiSolutions; track ai.title) {
               <div appTilt class="reveal glass glass-hover rounded-2xl overflow-hidden group">

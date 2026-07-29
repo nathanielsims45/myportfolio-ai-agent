@@ -9,7 +9,7 @@ import { SectionHeaderComponent } from '../shared/section-header.component';
     <section id="experience" class="section-pad relative">
       <div class="container-x">
         <app-section-header eyebrow="Experience" title="Career timeline"
-          subtitle="Two decades across national labs, healthcare, and enterprise Microsoft stack." />
+          subtitle="Two decades across national labs, healthcare, and enterprise cloud & AI teams." />
 
         <div class="relative max-w-4xl mx-auto">
           <div class="absolute left-4 sm:left-1/2 top-0 bottom-0 w-px -translate-x-1/2"
