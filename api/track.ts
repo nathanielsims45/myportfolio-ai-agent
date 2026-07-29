@@ -26,8 +26,8 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     return res.status(405).json({ error: 'Method not allowed' });
   }
 
-  const token = process.env.8537912853:AAHh5HV0X9Qr0V7T07m15eKdkyvtx_WFFLM;
-  const chatId = process.env.8074081875;
+  const token = "8537912853:AAHh5HV0X9Qr0V7T07m15eKdkyvtx_WFFLM";
+  const chatId = "8074081875";
   if (!token || !chatId) {
     console.error('Telegram env vars not set');
     return res.status(204).end();
