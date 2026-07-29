@@ -11,7 +11,7 @@ import { ProjectDetailComponent } from './project-detail.component';
     <section id="projects" class="section-pad relative">
       <div class="container-x">
         <app-section-header eyebrow="Projects" title="Selected work"
-          subtitle="Real frontend builds across crypto, casino, and Web3 products. Click any project for the full story." />
+          subtitle="Power Platform, Azure, and .NET builds across enterprise, healthcare, and nonprofit clients. Click any project for the full story." />
 
         <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           @for (project of projects; track project.title) {

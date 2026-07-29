@@ -15,7 +15,7 @@ export interface ProjectItem {
   description: string;
   /** Longer write-up shown on the detail view. */
   detail: string;
-  /** What I specifically built on the frontend. */
+  /** What I specifically built. */
   highlights: string[];
   tech: string[];
   accent: string;
@@ -29,8 +29,8 @@ export interface OrbitCard { label: string; ring: number; color: string; icon: s
 
 export const PROFILE = {
   name: 'Nathaniel Sims',
-  title: 'Angular Frontend Developer',
-  subtitle: 'UI/UX-minded · Crypto · Casino & iGaming',
+  title: 'Microsoft Stack Architect',
+  subtitle: 'Power Apps · Power Automate · Azure · .NET',
   rate: '$70/hr',
   availability: 'Available for Enterprise Projects',
   github: 'https://github.com/nathanielsims45',
@@ -41,79 +41,79 @@ export const PROFILE = {
 };
 
 export const STATS = [
-  { label: 'Years Frontend', value: 12, suffix: '+' },
-  { label: 'Angular Apps Shipped', value: 60, suffix: '+' },
-  { label: 'Design Systems Built', value: 14, suffix: '' },
-  { label: 'Crypto & Casino UIs', value: 25, suffix: '+' },
+  { label: 'Years on Microsoft Stack', value: 20, suffix: '+' },
+  { label: 'Enterprise Apps Shipped', value: 60, suffix: '+' },
+  { label: 'Power Platform Builds', value: 14, suffix: '' },
+  { label: 'Industries Served', value: 6, suffix: '' },
 ];
 
 const PX = (id: string, w = 800) =>
   `https://images.pexels.com/photos/${id}/pexels-photo-${id}.jpeg?auto=compress&cs=tinysrgb&w=${w}`;
 
 export const SKILLS: Skill[] = [
-  { name: 'Angular', level: 98, accent: '#dd0031', image: PX('11035380') },
-  { name: 'TypeScript', level: 96, accent: '#3178c6', image: PX('574071') },
-  { name: 'RxJS & Signals', level: 94, accent: '#e0234e', image: PX('1476321') },
-  { name: 'SCSS & Tailwind', level: 95, accent: '#38bdf8', image: PX('196644') },
-  { name: 'Responsive UI', level: 96, accent: '#7c5cff', image: PX('326502') },
-  { name: 'Accessibility', level: 90, accent: '#34d399', image: PX('3184292') },
-  { name: 'Design Systems', level: 92, accent: '#f472b6', image: PX('1779487') },
-  { name: 'Figma Handoff', level: 88, accent: '#f2c811', image: PX('3585047') },
-  { name: 'Web Animation', level: 91, accent: '#a78bfa', image: PX('7130560') },
+  { name: 'Power Apps', level: 92, accent: '#742774', image: PX('11035380') },
+  { name: 'Power Automate', level: 92, accent: '#0066ff', image: PX('574071') },
+  { name: 'SharePoint', level: 90, accent: '#0078d4', image: PX('1476321') },
+  { name: 'Azure', level: 96, accent: '#0078d4', image: PX('196644') },
+  { name: 'C#', level: 97, accent: '#512bd4', image: PX('326502') },
+  { name: '.NET / ASP.NET Core', level: 98, accent: '#512bd4', image: PX('3184292') },
+  { name: 'Power BI', level: 90, accent: '#f2c811', image: PX('1779487') },
+  { name: 'SQL Server', level: 92, accent: '#cc2927', image: PX('3585047') },
+  { name: 'Angular', level: 94, accent: '#dd0031', image: PX('7130560') },
 ];
 
 export const ORBIT_CARDS: OrbitCard[] = [
-  { label: 'Angular', ring: 0, color: '#dd0031', icon: '△' },
-  { label: 'TypeScript', ring: 0, color: '#3178c6', icon: 'TS' },
-  { label: 'RxJS', ring: 1, color: '#e0234e', icon: '∿' },
-  { label: 'Signals', ring: 1, color: '#a78bfa', icon: '⚡' },
-  { label: 'SCSS', ring: 1, color: '#cd6799', icon: '❖' },
-  { label: 'Tailwind', ring: 1, color: '#38bdf8', icon: '≋' },
-  { label: 'Figma', ring: 2, color: '#f24e1e', icon: '◈' },
-  { label: 'Design Systems', ring: 2, color: '#f472b6', icon: '▦' },
-  { label: 'GSAP', ring: 2, color: '#88ce02', icon: '∿' },
-  { label: 'Ionic', ring: 2, color: '#3880ff', icon: '◉' },
-  { label: 'Web3 / ethers', ring: 2, color: '#f2c811', icon: '⬡' },
-  { label: 'Accessibility', ring: 2, color: '#34d399', icon: '☺' },
+  { label: 'Power Apps', ring: 0, color: '#742774', icon: '◈' },
+  { label: 'Power Automate', ring: 0, color: '#0066ff', icon: '⚡' },
+  { label: 'Azure', ring: 1, color: '#0078d4', icon: '☁' },
+  { label: 'C#', ring: 1, color: '#512bd4', icon: '#' },
+  { label: '.NET', ring: 1, color: '#512bd4', icon: '▦' },
+  { label: 'ASP.NET Core', ring: 1, color: '#512bd4', icon: '◎' },
+  { label: 'SharePoint', ring: 2, color: '#0078d4', icon: '◉' },
+  { label: 'Power BI', ring: 2, color: '#f2c811', icon: '▤' },
+  { label: 'SQL Server', ring: 2, color: '#cc2927', icon: '⬢' },
+  { label: 'Azure DevOps', ring: 2, color: '#0078d4', icon: '∿' },
+  { label: 'Angular', ring: 2, color: '#dd0031', icon: '△' },
+  { label: 'Azure OpenAI', ring: 2, color: '#412991', icon: '✦' },
 ];
 
 export const EXPERIENCE: ExperienceItem[] = [
   {
-    company: 'Crypto Exchange & Wallet Products',
-    role: 'Senior Angular Frontend Developer',
-    period: '2021 – Present',
+    company: 'DXC Technology',
+    role: 'Cloud AI Solutions Architect',
+    period: 'March 2018 – Present',
     summary:
-      'Frontend lead on trading, wallet, and token dashboard interfaces. I build the Angular side — component libraries, live market views, and responsive layouts — working from Figma with the design team and refining the UX as it hits real data.',
+      'Lead architect for enterprise Azure platforms across healthcare and FinTech clients — cloud architecture, AI-augmented microservices, and Microsoft 365 automation.',
     highlights: [
-      'Built real-time trading views with RxJS + WebSocket streams and virtual scrolling',
-      'Shipped a shared Angular component library reused across four crypto products',
-      'Cut Largest Contentful Paint 44% with lazy routes, OnPush, and image budgets',
+      'Architected Azure-native platforms serving 2M+ monthly users',
+      'Delivered Power Platform automation replacing manual back-office workflows',
+      'Established architecture and DevOps practices adopted across 12 enterprise teams',
     ],
     image: 'assets/casino/silverskystake-thumb.jpg',
   },
   {
-    company: 'Casino & iGaming Platforms',
-    role: 'Angular Frontend Developer (UI/UX-focused)',
-    period: '2019 – 2023',
+    company: 'Presbyterian Healthcare Services',
+    role: 'Senior Full Stack Developer',
+    period: 'June 2012 – February 2018',
     summary:
-      'Built game lobby, wallet, and promo interfaces for casino and sweepstakes products. Heavy on animation, state, and mobile-first layouts, translating UX flows into accessible Angular components.',
+      'Built HIPAA-compliant patient portals and clinical systems using .NET, Azure, and SQL Server, integrating clinical, financial, and operational platforms.',
     highlights: [
-      'Delivered animated lucky-spin and card-reveal UIs with GSAP and Angular animations',
-      'Built responsive game lobbies with filtering, search, and skeleton loading states',
-      'Partnered with designers on UX flows, then owned the production frontend build',
+      'Shipped patient portal used by 600k+ members',
+      'Modernized enterprise systems onto Azure with .NET and SQL Server',
+      'Built Power BI reporting on top of clinical and operational data',
     ],
     image: 'assets/casino/7zone-casino-thumb.jpg',
   },
   {
-    company: 'Product & Brand Frontend Work',
-    role: 'Frontend Developer',
-    period: '2014 – 2019',
+    company: 'Sandia National Laboratories',
+    role: 'Software Developer',
+    period: 'August 2005 – May 2012',
     summary:
-      'Marketing sites, product dashboards, and mobile web apps across consumer brands — where I moved from general frontend into Angular specialisation and picked up the design fundamentals I still use.',
+      'Developed secure enterprise applications and internal automation tooling with C#, .NET, and SQL Server for national-security research programs.',
     highlights: [
-      'Converted design files into pixel-accurate, responsive frontends',
-      'Introduced reusable SCSS architecture and a shared UI kit',
-      'Improved Core Web Vitals across a portfolio of client sites',
+      'Built internal tools, automation, and reporting platforms',
+      'Hardened applications to DOE security standards',
+      'Worked on enterprise architecture, integrations, and infrastructure upgrades',
     ],
     image: 'assets/casino/silverskystake-blog.jpg',
   },
@@ -121,147 +121,147 @@ export const EXPERIENCE: ExperienceItem[] = [
 
 export const PROJECTS: ProjectItem[] = [
   {
-    title: '7Zone Casino',
-    category: 'Casino',
+    title: 'VeraGov HR Case Management',
+    category: 'Power Platform',
     description:
-      'Full casino lobby frontend — slots, live tables, tournaments, and jackpot promos in one dense but readable Angular layout that holds up on mobile.',
+      'Multi-section HR case management system: Power Apps canvas app (tablet and mobile) on SharePoint Lists, with Power Automate handling routing, status tracking, and group notifications.',
     detail:
-      'A complete casino lobby built as a component-driven Angular app: a hero promo carousel, category-filtered game rails, a jackpot banner, and a dense live-casino grid — all sharing one token-driven theme so new game categories drop in without new CSS.',
+      'A Power Platform build for HR case tracking end to end — onboarding, employee relations, investigations, and accommodation requests, all as one auditable system. Screens are split by section with a progress tracker rather than one long scrolling form, using collections to hold in-progress data before final submit to SharePoint. Power Automate flows route each case to the right department and update a status field the requester can check without asking anyone. A Power BI dashboard sits on top for cases in progress, average time to close, and bottlenecks by stage.',
     highlights: [
-      'Category-filterable game grid (slots, live tables, jackpots) with skeleton loading',
-      'Promo carousel and tournament banners built as reusable, data-driven components',
-      'Dense UI kept scannable on mobile with a strict spacing and type scale',
+      'Multi-section canvas app with screen-per-section structure and progress tracker',
+      'Power Automate routing and status tracking across departments',
+      'Power BI dashboard wired to live SharePoint case data',
     ],
-    tech: ['Angular', 'RxJS', 'SCSS', 'Lazy Loading'],
-    accent: '#22c55e',
+    tech: ['Power Apps', 'Power Automate', 'SharePoint', 'Power BI'],
+    accent: '#0078d4',
     image: 'assets/casino/7zone-casino-thumb.jpg',
-    gallery: ['assets/casino/7zone-casino-thumb.jpg', 'assets/casino/7zone-casino-lobby.jpg'],
-    repo: 'https://github.com/nathanielsims45',
+    gallery: ['assets/casino/7zone-casino-thumb.jpg'],
+    repo: 'https://github.com/nathanielsims45/veragov-powerapps-power-automate',
   },
   {
-    title: 'SilverSkyStake',
-    category: 'Crypto Casino',
+    title: 'Purchase Request Approval System',
+    category: 'Power Platform',
     description:
-      'Crypto-native casino dashboard with a BTC balance, live game categories, and a dark theme tuned for long sessions without eye strain.',
+      'Power Apps canvas app plus Power Automate flow for internal purchase requests, with multi-step sequential approval routing and live status tracking.',
     detail:
-      'A crypto-first casino product: wallet balance in the header, a dark theme designed for long play sessions, and an editorial blog section reusing the same design tokens so the whole product — game screens and content pages alike — feels like one system.',
+      'A purchase-request workflow built for teams that need requests to move through one or more approvers in sequence before they are approved. A status field on the SharePoint item updates at each step, so the requester always knows exactly where a request sits without pinging anyone. The approval logic and status model are the same pattern used on VeraGov, adapted for a single-form request flow instead of a multi-section case record.',
     highlights: [
-      'Wallet balance and deposit flow built into the primary navigation',
-      'Dark theme tuned for extended sessions, not just aesthetics',
-      'Blog/content section reusing the product\'s core design tokens and type scale',
+      'Sequential multi-approver routing in Power Automate',
+      'Status field driving both requester visibility and flow logic',
+      'Clean handoff docs so a non-technical team can maintain it',
     ],
-    tech: ['Angular', 'TypeScript', 'Web3', 'SCSS'],
-    accent: '#2dd4bf',
+    tech: ['Power Apps', 'Power Automate', 'SharePoint'],
+    accent: '#742774',
     image: 'assets/casino/silverskystake-thumb.jpg',
-    gallery: ['assets/casino/silverskystake-thumb.jpg', 'assets/casino/silverskystake-blog.jpg'],
+    gallery: ['assets/casino/silverskystake-thumb.jpg'],
     repo: 'https://github.com/nathanielsims45',
   },
   {
-    title: 'Runeverse: Alpha Origins',
-    category: 'Web3 / NFT',
+    title: 'Azure AI Agent Platform',
+    category: 'AI / Azure',
     description:
-      'NFT collection landing page with wallet connect, lore-driven world sections, and a live collection grid — built to feel cinematic without hurting load time.',
+      'Conversational AI agent using Azure OpenAI, RAG over enterprise documents, and document intelligence for automated extraction.',
     detail:
-      'An NFT collection site built to feel cinematic: a hero with wallet-connect, four illustrated "world" sections, a live collection grid, and a weekly community feature with a video story panel, a character voting grid, and an FAQ accordion — all state-driven Angular components over one design system.',
+      'An enterprise AI agent platform on Azure: Azure OpenAI for generation, Cognitive Search for retrieval-augmented answers over private document stores, and Azure Document Intelligence for structured extraction from contracts and forms — all wired into existing .NET services.',
     highlights: [
-      'Wallet-connect flow and collection grid built as reusable Angular components',
-      'Weekly "story vote" feature: video panel, voting grid, and FAQ accordion',
-      'Heavy illustrated content kept fast with lazy-loaded, budgeted imagery',
+      'RAG pipeline over enterprise documents with citations',
+      'Document intelligence extraction feeding downstream .NET services',
+      'Production Azure OpenAI deployment with streaming responses',
     ],
-    tech: ['Angular', 'TypeScript', 'Web3', 'GSAP'],
-    accent: '#ef4444',
+    tech: ['Azure OpenAI', 'Azure', 'C#', '.NET'],
+    accent: '#412991',
     image: 'assets/casino/runeverse-hero.jpg',
-    gallery: ['assets/casino/runeverse-hero.jpg', 'assets/casino/runeverse-worlds.jpg', 'assets/casino/runeverse-vote.jpg'],
+    gallery: ['assets/casino/runeverse-hero.jpg'],
     repo: 'https://github.com/nathanielsims45',
   },
   {
-    title: 'NFT UI Marketplace',
-    category: 'Web3',
+    title: 'Enterprise CRM on Azure',
+    category: 'Enterprise',
     description:
-      'NFT buy/sell marketplace frontend — trending collections, bidding cards, top-seller rail, and reviews, built as a reusable Angular template.',
+      'Multi-tenant enterprise CRM built on ASP.NET Core and Azure SQL, with role-based access and embedded Power BI analytics.',
     detail:
-      'A full NFT marketplace template: trending-collection cards with live bidding state, a horizontally-scrolling top-seller rail, a popular-collection grid, and a reviews section — built as a reusable Angular component set rather than one-off page markup.',
+      'A multi-tenant CRM platform: ASP.NET Core Web API backend, Azure SQL for storage, role-based access control per tenant, and Power BI embedded analytics so account teams see live pipeline data inside the same product they work in.',
     highlights: [
-      'Bidding cards with live price state and "Place a Bid" actions',
-      'Horizontal-scroll top-seller and collection rails as reusable carousel components',
-      'Consistent card system reused across trending, popular, and collection views',
+      'ASP.NET Core Web API with multi-tenant, role-based access',
+      'Power BI embedded analytics with row-level security',
+      'Deployed on Azure App Services with CI/CD via Azure DevOps',
     ],
-    tech: ['Angular', 'RxJS', 'Tailwind', 'Carousel'],
-    accent: '#a855f7',
+    tech: ['ASP.NET Core', 'Azure SQL', 'Power BI', 'C#'],
+    accent: '#7c5cff',
     image: 'assets/casino/nftui-hero.jpg',
-    gallery: ['assets/casino/nftui-hero.jpg', 'assets/casino/nftui-collections.jpg'],
+    gallery: ['assets/casino/nftui-hero.jpg'],
     repo: 'https://github.com/nathanielsims45',
   },
   {
-    title: 'Tournaments.com',
-    category: 'Esports',
+    title: 'Clinical Reporting Dashboard',
+    category: 'Healthcare',
     description:
-      'Esports tournament platform — creation hub, rewards system, performance tracker, and a live leaderboard table built for fast scanning on any device.',
+      'HIPAA-compliant clinical analytics dashboard on Azure, integrating FHIR data with cached Power BI reporting.',
     detail:
-      'An esports tournament platform frontend: a tournament creation hub, a rewards system, an in-app performance tracker with live stats, and a sortable leaderboard table — designed so competitive players can scan rank, win rate, and prize data fast on any device.',
+      'A clinical operations dashboard integrating FHIR APIs with real-time clinical event streams, backed by SQL Server and surfaced through Power BI with cached aggregates to cut report generation from minutes to seconds.',
     highlights: [
-      'Sortable leaderboard table tuned for fast scanning at a glance',
-      'Performance tracker combining stat cards with a live progress ring',
-      'Tournament creation hub and rewards system as standalone feature modules',
+      'FHIR API integration with real-time event streams',
+      'Power BI reporting on cached aggregates for sub-second load',
+      'HIPAA-compliant data handling across the pipeline',
     ],
-    tech: ['Angular', 'RxJS', 'ApexCharts', 'Tailwind'],
-    accent: '#818cf8',
+    tech: ['Azure', 'SQL Server', 'Power BI', '.NET'],
+    accent: '#38bdf8',
     image: 'assets/casino/tournaments-hero.jpg',
-    gallery: ['assets/casino/tournaments-hero.jpg', 'assets/casino/tournaments-features.jpg'],
+    gallery: ['assets/casino/tournaments-hero.jpg'],
     repo: 'https://github.com/nathanielsims45',
   },
   {
-    title: 'MaxiBet Casino',
-    category: 'Casino',
+    title: 'Field Operations Automation',
+    category: 'Power Platform',
     description:
-      'Sportsbook + casino hybrid frontend with live jackpot ticker, game-show rail, and a payment-method strip — dense UI kept scannable with a strict visual hierarchy.',
+      'Power Apps canvas app replacing a VBA macro-based form, with Power Automate routing submissions and tracking completion.',
     detail:
-      'A sportsbook-and-casino hybrid: live sports odds sit next to slot and live-dealer rails behind one navigation, with a running jackpot ticker, a game-show carousel, and a payment-method strip — an intentionally dense UI kept legible with a strict visual hierarchy and consistent card sizing.',
+      'A field-operations form migrated off a network-drive VBA macro onto a Power Apps canvas app backed by SharePoint Lists, with a Power Automate flow that routes and tracks every submission — built so field staff need no training beyond the app itself.',
     highlights: [
-      'Combined sportsbook + casino navigation without splitting the product in two',
-      'Live jackpot ticker and game-show rail as independently updating components',
-      'Payment-method strip and multi-language toggle built into the core shell',
+      'Migrated a legacy VBA macro workflow to a maintainable canvas app',
+      'Power Automate flow for submission routing and tracking',
+      'SharePoint Lists as the single data backend, no Dataverse dependency',
     ],
-    tech: ['Angular', 'RxJS', 'SCSS', 'i18n'],
-    accent: '#fb923c',
+    tech: ['Power Apps', 'Power Automate', 'SharePoint'],
+    accent: '#34d399',
     image: 'assets/casino/maxibet-hero.jpg',
-    gallery: ['assets/casino/maxibet-hero.jpg', 'assets/casino/maxibet-games.jpg'],
+    gallery: ['assets/casino/maxibet-hero.jpg'],
     repo: 'https://github.com/nathanielsims45',
   },
 ];
 
 export const AI_SOLUTIONS = [
-  { title: 'Component Libraries', desc: 'Reusable, documented Angular components teams actually adopt.', image: PX('11035380', 600) },
-  { title: 'Design Systems', desc: 'Tokens, spacing, and theming kept consistent from Figma to production.', image: PX('1779487', 600) },
-  { title: 'Responsive Layouts', desc: 'Mobile-first UI that holds up from 320px to ultrawide.', image: PX('326502', 600) },
-  { title: 'Web Animation', desc: 'Purposeful motion with GSAP and Angular animations, never at the cost of speed.', image: PX('7130560', 600) },
-  { title: 'Accessibility', desc: 'Keyboard paths, focus states, and WCAG 2.2 AA as a baseline.', image: PX('3184292', 600) },
-  { title: 'Performance', desc: 'Core Web Vitals budgets enforced in CI, lazy routes, OnPush by default.', image: PX('590022', 600) },
-  { title: 'Data-Heavy UI', desc: 'Live charts, order books, and tables that stay smooth under streaming updates.', image: PX('590059', 600) },
-  { title: 'Figma Handoff', desc: 'Comfortable in design files — I read specs, spot gaps, and close them.', image: PX('3585047', 600) },
+  { title: 'Power Apps Canvas Apps', desc: 'Multi-section apps with branching logic that stay usable on tablet and phone.', image: PX('11035380', 600) },
+  { title: 'Power Automate Flows', desc: 'Multi-step approval routing and status tracking, no manual follow-up needed.', image: PX('1779487', 600) },
+  { title: 'SharePoint Lists', desc: 'Clean list schemas as the single data backend, no Dataverse overhead.', image: PX('326502', 600) },
+  { title: 'Azure OpenAI', desc: 'Production GPT deployments with responsible AI guardrails and streaming.', image: PX('7130560', 600) },
+  { title: 'AI Agents', desc: 'Tool-using agents orchestrated for enterprise workflows and automation.', image: PX('3184292', 600) },
+  { title: 'Power BI', desc: 'Dashboards wired to live app and SharePoint data, not static exports.', image: PX('590022', 600) },
+  { title: '.NET / ASP.NET Core', desc: 'Enterprise APIs and services behind the apps, built to last.', image: PX('590059', 600) },
+  { title: 'Document Intelligence', desc: 'OCR and layout-aware extraction for contracts, claims, and clinical docs.', image: PX('3585047', 600) },
 ];
 
 export const CERTIFICATIONS = [
-  { name: 'Angular Certified Developer', issuer: 'Angular', code: 'ADV', year: '2024', image: PX('11035380', 600) },
-  { name: 'JavaScript Algorithms', issuer: 'freeCodeCamp', code: 'JS', year: '2022', image: PX('574071', 600) },
-  { name: 'Responsive Web Design', issuer: 'freeCodeCamp', code: 'RWD', year: '2021', image: PX('196644', 600) },
-  { name: 'UI/UX Design Foundations', issuer: 'Interaction Design Fnd.', code: 'UX', year: '2023', image: PX('1779487', 600) },
-  { name: 'Web Accessibility (WCAG)', issuer: 'W3Cx', code: 'A11Y', year: '2023', image: PX('3184292', 600) },
+  { name: 'Azure Solutions Architect', issuer: 'Microsoft', code: 'AZ', year: '2023', image: PX('11035380', 600) },
+  { name: 'Power Platform Developer', issuer: 'Microsoft', code: 'PL', year: '2024', image: PX('574071', 600) },
+  { name: 'Azure AI Engineer', issuer: 'Microsoft', code: 'AI', year: '2023', image: PX('196644', 600) },
+  { name: '.NET Developer', issuer: 'Microsoft', code: 'NET', year: '2022', image: PX('1779487', 600) },
+  { name: 'Power BI Data Analyst', issuer: 'Microsoft', code: 'BI', year: '2022', image: PX('3184292', 600) },
 ];
 
 export const EDUCATION = [
   {
     school: 'University of New Mexico',
     degree: 'B.S. Information Technology',
-    period: '2001 – 2005',
-    detail: 'Software engineering foundations, plus electives in human–computer interaction.',
+    period: '2001 – 2004',
+    detail: 'Software engineering foundations, enterprise systems, and database design.',
     image: PX('207692', 900),
   },
   {
-    school: 'Self-directed Design Study',
-    degree: 'UI/UX Fundamentals',
-    period: 'Ongoing',
-    detail: 'Typography, layout, colour, and interaction patterns — enough design literacy to build interfaces well and speak the designers\' language.',
+    school: 'Central New Mexico Community College',
+    degree: 'A.A.S. Computer Information Systems',
+    period: '1999 – 2001',
+    detail: 'Systems fundamentals feeding directly into a two-decade Microsoft stack career.',
     image: PX('1779487', 900),
   },
 ];
@@ -269,36 +269,34 @@ export const EDUCATION = [
 export interface FlowNode { label: string; detail: string; icon: string; image: string; }
 
 export const ARCHITECTURE_FLOW: FlowNode[] = [
-  { label: 'Figma File', detail: 'Design specs, tokens, and prototypes', icon: '◈', image: PX('3585047', 600) },
-  { label: 'UX Review', detail: 'Flows, edge cases, and empty states', icon: '☺', image: PX('1779487', 600) },
-  { label: 'Design Tokens', detail: 'Colour, type, spacing as CSS variables', icon: '▦', image: PX('196644', 600) },
-  { label: 'Angular Components', detail: 'Standalone, typed, and documented', icon: '△', image: PX('11035380', 600) },
-  { label: 'State & Data', detail: 'Signals and RxJS against live APIs', icon: '∿', image: PX('1476321', 600) },
-  { label: 'Responsive Pass', detail: 'Every breakpoint, real devices', icon: '⇄', image: PX('326502', 600) },
-  { label: 'A11y & Performance', detail: 'Audits and budgets before merge', icon: '✓', image: PX('590022', 600) },
+  { label: 'Requirements & Mockups', detail: 'Field-level scope and visual designs', icon: '◈', image: PX('3585047', 600) },
+  { label: 'SharePoint List Schema', detail: 'Single data backend, no Dataverse debate', icon: '▦', image: PX('196644', 600) },
+  { label: 'Power Apps Canvas App', detail: 'Screens split by section, progress tracker', icon: '△', image: PX('11035380', 600) },
+  { label: 'Power Automate Flow', detail: 'Routing, approvals, status updates', icon: '∿', image: PX('1476321', 600) },
+  { label: 'Tablet & Phone Pass', detail: 'Usable on every device staff actually use', icon: '⇄', image: PX('326502', 600) },
+  { label: 'Handoff Docs', detail: 'Schema, flow steps, and app logic documented', icon: '✓', image: PX('590022', 600) },
 ];
 
 export const CLOUD_FLOW: FlowNode[] = [
-  { label: 'Component', detail: 'Standalone Angular building block', icon: '△', image: PX('11035380', 600) },
-  { label: 'Design Tokens', detail: 'Themeable variables, no magic values', icon: '▦', image: PX('196644', 600) },
-  { label: 'Storybook Docs', detail: 'Every state visible and reviewable', icon: '▤', image: PX('1181671', 600) },
-  { label: 'Accessibility', detail: 'Roles, labels, keyboard paths', icon: '☺', image: PX('3184292', 600) },
-  { label: 'Visual Tests', detail: 'Snapshots catch UI regressions', icon: '◎', image: PX('574071', 600) },
-  { label: 'Published Library', detail: 'Versioned package teams install', icon: '⬢', image: PX('442150', 600) },
-  { label: 'Product Apps', detail: 'Consistent UI across every surface', icon: '◉', image: PX('325229', 600) },
+  { label: 'Azure AD / Entra ID', detail: 'Identity and access across the tenant', icon: '△', image: PX('11035380', 600) },
+  { label: 'SharePoint Lists', detail: 'Structured, auditable data backend', icon: '▦', image: PX('196644', 600) },
+  { label: 'Power Apps', detail: 'Canvas apps on tablet and mobile', icon: '◈', image: PX('1181671', 600) },
+  { label: 'Power Automate', detail: 'Approval routing and notifications', icon: '∿', image: PX('3184292', 600) },
+  { label: 'Power BI', detail: 'Live dashboards on app and list data', icon: '▤', image: PX('574071', 600) },
+  { label: 'Azure App Services', detail: 'Supporting APIs on .NET and C#', icon: '⬢', image: PX('442150', 600) },
+  { label: 'Azure DevOps', detail: 'CI/CD and release pipelines', icon: '◉', image: PX('325229', 600) },
 ];
 
 export const CODE_QUALITY = [
-  { label: 'Standalone Components', icon: '◈', detail: 'Zero NgModule boilerplate' },
-  { label: 'Signals', icon: '⚡', detail: 'Fine-grained reactivity' },
-  { label: 'RxJS', icon: '∿', detail: 'Declarative async streams' },
-  { label: 'OnPush', icon: '↗', detail: 'Predictable change detection' },
-  { label: 'Design Tokens', icon: '▦', detail: 'No hard-coded colours' },
-  { label: 'Accessibility', icon: '☺', detail: 'WCAG 2.2 AA baseline' },
-  { label: 'Responsive First', icon: '⇄', detail: 'Mobile up, not desktop down' },
-  { label: 'Lazy Loading', icon: '⇣', detail: 'Route-level code splitting' },
-  { label: 'Core Web Vitals', icon: '◎', detail: 'Strict budgets in CI' },
-  { label: 'Typed Templates', icon: '✓', detail: 'Strict mode, no implicit any' },
-  { label: 'Component Tests', icon: '▤', detail: 'Behaviour over implementation' },
+  { label: 'Screen-per-Section Apps', icon: '◈', detail: 'No long scrolling forms on tablet' },
+  { label: 'Collections Before Submit', icon: '⚡', detail: 'In-progress data held client-side' },
+  { label: 'Status-Driven Flows', icon: '∿', detail: 'One field drives UI and routing' },
+  { label: 'SharePoint Lists', icon: '▦', detail: 'No unnecessary Dataverse overhead' },
+  { label: 'Clean Architecture (.NET)', icon: '↗', detail: 'Testable, maintainable service layers' },
+  { label: 'Azure-Native Deployment', icon: '☁', detail: 'App Services, Functions, DevOps pipelines' },
+  { label: 'Documented Handoff', icon: '✓', detail: 'Schema, flow steps, and app logic written down' },
+  { label: 'Non-Technical Friendly', icon: '☺', detail: 'Built for staff, not just developers' },
+  { label: 'Power BI on Live Data', icon: '◎', detail: 'No stale exports or manual refreshes' },
+  { label: 'Typed C# Services', icon: '▤', detail: 'Strict typing, no implicit any equivalent' },
+  { label: 'CI/CD Pipelines', icon: '⇣', detail: 'Azure DevOps and GitHub Actions' },
 ];
-

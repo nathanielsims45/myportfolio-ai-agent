@@ -9,7 +9,7 @@ import { PROFILE } from '../../data/portfolio.data';
     <section id="contact" class="section-pad relative">
       <div class="container-x">
         <app-section-header eyebrow="Contact" title="Let's build something"
-          subtitle="Available for enterprise Angular, Azure, and AI projects." />
+          subtitle="Available for Power Platform, Azure, and .NET projects." />
 
         <div class="grid lg:grid-cols-2 gap-8">
           <form class="reveal glass rounded-3xl p-8 space-y-4" (submit)="submit($event)">

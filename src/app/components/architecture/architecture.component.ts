@@ -11,8 +11,8 @@ import { TiltDirective } from '../shared/tilt.directive';
       <div class="container-x space-y-20">
         <!-- Enterprise architecture -->
         <div>
-          <app-section-header eyebrow="Process" title="Design to production flow"
-            subtitle="How a Figma screen becomes an accessible, tested Angular UI." />
+          <app-section-header eyebrow="Process" title="Scope to production flow"
+            subtitle="How requirements and mockups become a maintained Power Apps build." />
           <div class="reveal glass rounded-3xl p-6 sm:p-8">
             <div class="flex flex-col items-center gap-3">
               @for (node of arch; track node.label; let last = $last) {
@@ -38,8 +38,8 @@ import { TiltDirective } from '../shared/tilt.directive';
 
         <!-- Cloud architecture -->
         <div>
-          <app-section-header eyebrow="Design System" title="Component library pipeline"
-            subtitle="How a single component reaches every product surface." />
+          <app-section-header eyebrow="Cloud" title="Microsoft cloud architecture"
+            subtitle="Identity, data, apps, flows, and reporting on one Azure tenant." />
           <div class="reveal glass rounded-3xl p-6 sm:p-8">
             <div class="flex flex-col items-center gap-3">
               @for (node of cloud; track node.label; let last = $last) {
@@ -65,8 +65,8 @@ import { TiltDirective } from '../shared/tilt.directive';
 
         <!-- Code quality -->
         <div>
-          <app-section-header eyebrow="Quality" title="Angular code quality"
-            subtitle="Practices I hold to in every Angular codebase." />
+          <app-section-header eyebrow="Quality" title="Build practices"
+            subtitle="What keeps a Power Platform or .NET build maintainable after handoff." />
           <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
             @for (item of codeQuality; track item.label) {
               <div appTilt class="reveal quality-card glass glass-hover rounded-xl p-4 flex items-start gap-3">
@@ -82,8 +82,8 @@ import { TiltDirective } from '../shared/tilt.directive';
 
         <!-- AI solutions -->
         <div id="ai">
-          <app-section-header eyebrow="UI/UX" title="Frontend capabilities"
-            subtitle="What I bring to the interface layer, design literacy included." />
+          <app-section-header eyebrow="Capabilities" title="What I build with the Microsoft stack"
+            subtitle="Power Platform, Azure, and .NET, end to end." />
           <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
             @for (ai of aiSolutions; track ai.title) {
               <div appTilt class="reveal glass glass-hover rounded-2xl overflow-hidden group">

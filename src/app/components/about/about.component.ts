@@ -12,8 +12,8 @@ import { TiltDirective } from '../shared/tilt.directive';
   template: `
     <section id="about" class="section-pad relative">
       <div class="container-x">
-        <app-section-header eyebrow="About" title="Angular developer who sweats the interface"
-          subtitle="Frontend specialist for crypto, casino, and data-heavy products." />
+        <app-section-header eyebrow="About" title="Microsoft stack architect who ships and hands off"
+          subtitle="Power Apps, Power Automate, Azure, and .NET for enterprise and nonprofit teams." />
 
         <div class="grid lg:grid-cols-2 gap-10 items-center">
           <div class="reveal relative">
@@ -32,16 +32,18 @@ import { TiltDirective } from '../shared/tilt.directive';
 
           <div class="reveal space-y-5">
             <p class="text-lg text-text-muted leading-relaxed">
-              I'm {{ profile.name }}, an Angular frontend developer focused on
-              crypto, casino, and other data-heavy interfaces. I build the layer
-              users actually touch — component libraries, live trading and wallet
-              views, and responsive layouts that stay fast and accessible.
+              I'm {{ profile.name }}, a Microsoft stack architect building
+              Power Apps canvas apps, Power Automate flows, and Azure/.NET
+              systems for enterprise and nonprofit teams. Multi-section forms
+              with real branching logic, multi-step approval routing, and
+              SharePoint as the data backend, not single-screen toy apps.
             </p>
             <p class="text-text-muted leading-relaxed">
-              I'm a developer first, not a designer — but I'm fluent in design.
-              I work comfortably from Figma, care about type, spacing, and motion,
-              and can spot the gaps in a spec before they reach production. That
-              overlap is why designers and I ship faster together.
+              I work from existing scope, mockups, and build documentation
+              rather than starting from a blank canvas, and every handoff
+              includes the SharePoint schema, flow steps, and app logic
+              written down so a non-technical team can maintain it after
+              I'm off the project.
             </p>
 
             <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-4">
