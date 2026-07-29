@@ -130,7 +130,7 @@ export class AgentWidgetComponent implements AfterViewChecked {
     }
     this.voice.listen((text) => {
       this.draft = text;
-      this.send();
+      void this.send();
     });
   }
 
