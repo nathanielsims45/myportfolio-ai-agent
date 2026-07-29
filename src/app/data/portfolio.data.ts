@@ -89,7 +89,7 @@ export const EXPERIENCE: ExperienceItem[] = [
       'Built RAG-based AI agents and GraphQL/REST microservices for enterprise clients',
       'Guided teams on architecture, DevOps, security, and CI/CD best practices',
     ],
-    image: 'assets/casino/silverskystake-thumb.jpg',
+    image: PX('4164418', 900),
   },
   {
     company: 'Presbyterian Healthcare Services',
@@ -102,7 +102,7 @@ export const EXPERIENCE: ExperienceItem[] = [
       'Built RBAC access control and immutable audit logging for PHI access',
       'Integrated clinical, financial, and operational platforms end to end',
     ],
-    image: 'assets/casino/7zone-casino-thumb.jpg',
+    image: PX('1181677', 900),
   },
   {
     company: 'Sandia National Laboratories',
@@ -115,7 +115,7 @@ export const EXPERIENCE: ExperienceItem[] = [
       'Hardened applications to DOE security standards',
       'Worked on enterprise architecture, integrations, and infrastructure upgrades',
     ],
-    image: 'assets/casino/silverskystake-blog.jpg',
+    image: PX('546819', 900),
   },
 ];
 
@@ -134,8 +134,8 @@ export const PROJECTS: ProjectItem[] = [
     ],
     tech: ['Azure OpenAI', 'Azure AI Search', 'Python', 'Azure'],
     accent: '#412991',
-    image: 'assets/casino/runeverse-hero.jpg',
-    gallery: ['assets/casino/runeverse-hero.jpg'],
+    image: PX('8438918', 1200),
+    gallery: [PX('8438918', 1200)],
     repo: 'https://github.com/nathanielsims45',
   },
   {
@@ -152,8 +152,8 @@ export const PROJECTS: ProjectItem[] = [
     ],
     tech: ['React', 'Python', 'PostgreSQL', 'Automation'],
     accent: '#38bdf8',
-    image: 'assets/casino/tournaments-hero.jpg',
-    gallery: ['assets/casino/tournaments-hero.jpg'],
+    image: PX('4164418', 1200),
+    gallery: [PX('4164418', 1200)],
     repo: 'https://github.com/nathanielsims45',
   },
   {
@@ -170,8 +170,8 @@ export const PROJECTS: ProjectItem[] = [
     ],
     tech: ['Automation', 'Python', 'PostgreSQL', 'React'],
     accent: '#34d399',
-    image: 'assets/casino/maxibet-hero.jpg',
-    gallery: ['assets/casino/maxibet-hero.jpg'],
+    image: PX('8386440', 1200),
+    gallery: [PX('8386440', 1200)],
     repo: 'https://github.com/nathanielsims45',
   },
   {
@@ -188,8 +188,8 @@ export const PROJECTS: ProjectItem[] = [
     ],
     tech: ['Next.js', 'PostgreSQL', 'Supabase', 'Stripe'],
     accent: '#7c5cff',
-    image: 'assets/casino/nftui-hero.jpg',
-    gallery: ['assets/casino/nftui-hero.jpg'],
+    image: PX('1181244', 1200),
+    gallery: [PX('1181244', 1200)],
     repo: 'https://github.com/nathanielsims45',
   },
   {
@@ -206,8 +206,8 @@ export const PROJECTS: ProjectItem[] = [
     ],
     tech: ['C#', 'ASP.NET', 'Automation', 'PostgreSQL'],
     accent: '#0078d4',
-    image: 'assets/casino/7zone-casino-thumb.jpg',
-    gallery: ['assets/casino/7zone-casino-thumb.jpg'],
+    image: PX('5473955', 1200),
+    gallery: [PX('5473955', 1200)],
     repo: 'https://github.com/nathanielsims45',
   },
   {
@@ -224,8 +224,8 @@ export const PROJECTS: ProjectItem[] = [
     ],
     tech: ['Microsoft Power BI', 'Automation', 'C#'],
     accent: '#742774',
-    image: 'assets/casino/silverskystake-thumb.jpg',
-    gallery: ['assets/casino/silverskystake-thumb.jpg'],
+    image: PX('373543', 1200),
+    gallery: [PX('373543', 1200)],
     repo: 'https://github.com/nathanielsims45/veragov-powerapps-power-automate',
   },
 ];
