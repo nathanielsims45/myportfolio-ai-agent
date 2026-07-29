@@ -13,6 +13,7 @@ import { ChartsComponent } from './app/components/charts/charts.component';
 import { ContactComponent } from './app/components/contact/contact.component';
 import { FooterComponent } from './app/components/footer/footer.component';
 import { ScrollRevealService } from './app/services/scroll-reveal.service';
+import { AgentWidgetComponent } from './app/components/agent/agent-widget.component';
 
 @Component({
   selector: 'app-root',
@@ -20,6 +21,7 @@ import { ScrollRevealService } from './app/services/scroll-reveal.service';
     NavbarComponent, CinematicBgComponent, HeroComponent, TechStackComponent, AboutComponent,
     SkillsComponent, ExperienceComponent, ProjectsComponent,
     ArchitectureComponent, ChartsComponent, ContactComponent, FooterComponent,
+    AgentWidgetComponent,
   ],
   template: `
     <div class="relative min-h-screen">
@@ -41,6 +43,7 @@ import { ScrollRevealService } from './app/services/scroll-reveal.service';
         </main>
         <app-footer />
       </div>
+      <app-agent-widget />
     </div>
   `,
 })
